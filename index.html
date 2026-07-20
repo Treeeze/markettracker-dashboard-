@@ -1,14 +1,20 @@
 <!doctype html>
-<html lang="de" data-theme="light">
+<html lang="de" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Markttracker · 18.07.2026</title>
+<title>Markttracker · 20.07.2026</title>
 <style>
-  /* Farben aus der Referenz-Palette. Plus/Minus wird über das Diverging-Paar
-     Blau<->Rot codiert, nicht Grün/Rot: Grün-Rot ist genau die Kombination, die
-     bei Rot-Grün-Sehschwäche zusammenfällt. Jeder Wert steht zusätzlich als
-     Zahl mit Vorzeichen da -- Farbe trägt nie allein die Bedeutung. */
+  /* DUNKEL IST DIE VORGABE (seit 19.07.2026, so von Nils gewünscht). Hell bleibt
+     als Alternative erhalten (`--light` bzw. der Umschalter im Dashboard).
+
+     Plus/Minus wird über das Diverging-Paar Blau<->Rot codiert, nicht Grün/Rot:
+     Grün-Rot ist genau die Kombination, die bei Rot-Grün-Sehschwäche zusammenfällt.
+     Jeder Wert steht zusätzlich als Zahl mit Vorzeichen da -- Farbe trägt nie
+     allein die Bedeutung.
+
+     Das Akzent-Violett ist bewusst NICHT blau: Blau ist im Report semantisch
+     belegt ("positiv"). Ein blauer Akzent würde diese Bedeutung verwässern. */
   :root {
     color-scheme: light;
     --surface:      #fcfcfb;
@@ -28,18 +34,28 @@
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
       color-scheme: dark;
-      --surface: #1a1a19; --plane: #0d0d0d; --ink: #ffffff; --ink-2: #c3c2b7;
-      --ink-muted: #898781; --grid: #2c2c2a; --axis: #383835;
-      --border: rgba(255,255,255,0.10);
-      --pos: #3987e5; --neg: #e66767; --mid: #383835; --accent: #9085e9;
+      --surface: #141619; --plane: #0a0b0d; --ink: #f2f4f7; --ink-2: #aeb4bd;
+      --ink-muted: #79808a; --grid: #23262b; --axis: #31353c;
+      --border: rgba(255,255,255,0.08);
+      --pos: #4d9dff; --neg: #ff5f57; --mid: #23262b; --accent: #a78bfa;
+      --warn: #f5b544;
     }
   }
   :root[data-theme="dark"] {
     color-scheme: dark;
-    --surface: #1a1a19; --plane: #0d0d0d; --ink: #ffffff; --ink-2: #c3c2b7;
-    --ink-muted: #898781; --grid: #2c2c2a; --axis: #383835;
-    --border: rgba(255,255,255,0.10);
-    --pos: #3987e5; --neg: #e66767; --mid: #383835; --accent: #9085e9;
+    --surface:   #141619;   /* Karten -- spürbar abgehoben vom Grund */
+    --plane:     #0a0b0d;   /* Seitengrund -- fast schwarz, minimal kühl */
+    --ink:       #f2f4f7;   /* Primärtext -- gebrochenes Weiß, nicht #fff */
+    --ink-2:     #aeb4bd;   /* Sekundärtext -- neutralgrau */
+    --ink-muted: #79808a;   /* Labels, Meta, Fußnoten */
+    --grid:      #23262b;   /* Tabellenlinien */
+    --axis:      #31353c;
+    --border:    rgba(255,255,255,0.08);
+    --pos:       #4d9dff;   /* BLAU = positiv */
+    --neg:       #ff5f57;   /* ROT  = negativ */
+    --mid:       #23262b;   /* neutraler Mittelpunkt der Balken */
+    --accent:    #a78bfa;   /* Violett -- bewusst nicht blau, siehe oben */
+    --warn:      #f5b544;
   }
 
   * { box-sizing: border-box; }
@@ -188,10 +204,10 @@
 <header class="top">
   <h1>Markttracker</h1>
   <div class="sub">
-    Lauf vom 18.07.2026, 18:20 Uhr ·
-    95 Unternehmen · 15 Indizes ·
-    69 Ereignisse ·
-    Thesen: regelbasiert
+    Lauf vom 20.07.2026, 18:20 Uhr ·
+    101 Unternehmen · 17 Indizes ·
+    135 Ereignisse ·
+    Thesen: Claude (claude-opus-4-8)
   </div>
   <div class="regime-pill">Makro-Regime: Goldilocks · Neutral</div>
 </header>
@@ -215,8 +231,8 @@
   </p>
 
   <div class="card" style="margin-bottom:14px; border-left:3px solid var(--accent)">
-    <b>S&amp;P 500</b> am 17.07.2026:
-    <span class="num-neg" style="font-weight:600">-1.01 %</span>.
+    <b>S&amp;P 500</b> am 20.07.2026:
+    <span class="num-pos" style="font-weight:600">+0.47 %</span>.
     Davon erklären die Einzelwerte 100 %. Unerklärt bleiben +0.00 Prozentpunkte.
   </div>
 
@@ -228,59 +244,59 @@
         <tbody>
         
           <tr>
-            <td class="name">NVIDIA CORP <span class="meta">· NVDA</span></td>
-            <td class="num-neg">-2.2 %</td>
-            <td class="barcell"><span class="dbar"><i class="n" style="width:28.6%"></i></span></td>
-            <td class="num-neg">-0.17</td>
-          </tr>
-        
-          <tr>
-            <td class="name">MICROSOFT CORP <span class="meta">· MSFT</span></td>
-            <td class="num-neg">-1.8 %</td>
-            <td class="barcell"><span class="dbar"><i class="n" style="width:13.9%"></i></span></td>
-            <td class="num-neg">-0.08</td>
-          </tr>
-        
-          <tr>
-            <td class="name">ALPHABET INC CL A <span class="meta">· GOOGL</span></td>
-            <td class="num-neg">-2.2 %</td>
-            <td class="barcell"><span class="dbar"><i class="n" style="width:11.6%"></i></span></td>
-            <td class="num-neg">-0.07</td>
-          </tr>
-        
-          <tr>
-            <td class="name">META PLATFORMS INC CLASS A <span class="meta">· META</span></td>
-            <td class="num-neg">-2.8 %</td>
-            <td class="barcell"><span class="dbar"><i class="n" style="width:10.5%"></i></span></td>
-            <td class="num-neg">-0.06</td>
-          </tr>
-        
-          <tr>
-            <td class="name">ALPHABET INC CL C <span class="meta">· GOOG</span></td>
-            <td class="num-neg">-2.2 %</td>
-            <td class="barcell"><span class="dbar"><i class="n" style="width:9.4%"></i></span></td>
-            <td class="num-neg">-0.06</td>
-          </tr>
-        
-          <tr>
-            <td class="name">TESLA INC <span class="meta">· TSLA</span></td>
+            <td class="name">APPLE INC <span class="meta">· AAPL</span></td>
             <td class="num-neg">-2.6 %</td>
-            <td class="barcell"><span class="dbar"><i class="n" style="width:7.4%"></i></span></td>
-            <td class="num-neg">-0.04</td>
+            <td class="barcell"><span class="dbar"><i class="n" style="width:32.5%"></i></span></td>
+            <td class="num-neg">-0.20</td>
+          </tr>
+        
+          <tr>
+            <td class="name">NVIDIA CORP <span class="meta">· NVDA</span></td>
+            <td class="num-pos">+1.4 %</td>
+            <td class="barcell"><span class="dbar"><i class="p" style="width:18.2%"></i></span></td>
+            <td class="num-pos">+0.11</td>
+          </tr>
+        
+          <tr>
+            <td class="name">BROADCOM INC <span class="meta">· AVGO</span></td>
+            <td class="num-pos">+3.2 %</td>
+            <td class="barcell"><span class="dbar"><i class="p" style="width:14.6%"></i></span></td>
+            <td class="num-pos">+0.09</td>
+          </tr>
+        
+          <tr>
+            <td class="name">MICRON TECHNOLOGY INC <span class="meta">· MU</span></td>
+            <td class="num-pos">+5.8 %</td>
+            <td class="barcell"><span class="dbar"><i class="p" style="width:14.5%"></i></span></td>
+            <td class="num-pos">+0.09</td>
           </tr>
         
           <tr>
             <td class="name">AMAZON.COM INC <span class="meta">· AMZN</span></td>
-            <td class="num-neg">-1.1 %</td>
-            <td class="barcell"><span class="dbar"><i class="n" style="width:6.7%"></i></span></td>
-            <td class="num-neg">-0.04</td>
+            <td class="num-pos">+2.1 %</td>
+            <td class="barcell"><span class="dbar"><i class="p" style="width:13.3%"></i></span></td>
+            <td class="num-pos">+0.08</td>
           </tr>
         
           <tr>
-            <td class="name">APPLIED MATERIALS INC <span class="meta">· AMAT</span></td>
-            <td class="num-neg">-5.6 %</td>
-            <td class="barcell"><span class="dbar"><i class="n" style="width:6.4%"></i></span></td>
-            <td class="num-neg">-0.04</td>
+            <td class="name">ALPHABET INC CL A <span class="meta">· GOOGL</span></td>
+            <td class="num-pos">+2.5 %</td>
+            <td class="barcell"><span class="dbar"><i class="p" style="width:13.2%"></i></span></td>
+            <td class="num-pos">+0.08</td>
+          </tr>
+        
+          <tr>
+            <td class="name">MICROSOFT CORP <span class="meta">· MSFT</span></td>
+            <td class="num-pos">+1.5 %</td>
+            <td class="barcell"><span class="dbar"><i class="p" style="width:11.8%"></i></span></td>
+            <td class="num-pos">+0.07</td>
+          </tr>
+        
+          <tr>
+            <td class="name">ALPHABET INC CL C <span class="meta">· GOOG</span></td>
+            <td class="num-pos">+2.6 %</td>
+            <td class="barcell"><span class="dbar"><i class="p" style="width:11.2%"></i></span></td>
+            <td class="num-pos">+0.07</td>
           </tr>
         
         </tbody>
@@ -299,33 +315,33 @@
         
           <tr>
             <td class="name">Risiko (VIX)</td>
-            <td class="barcell"><span class="dbar"><i class="n" style="width:50.0%"></i></span></td>
-            <td class="num-neg">-0.85</td>
+            <td class="barcell"><span class="dbar"><i class="p" style="width:50.0%"></i></span></td>
+            <td class="num-pos">+0.42</td>
           </tr>
         
           <tr>
             <td class="name">Zinsen (10J)</td>
-            <td class="barcell"><span class="dbar"><i class="p" style="width:11.3%"></i></span></td>
-            <td class="num-pos">+0.05</td>
-          </tr>
-        
-          <tr>
-            <td class="name">Öl (WTI)</td>
-            <td class="barcell"><span class="dbar"><i class="n" style="width:3.5%"></i></span></td>
-            <td class="num-neg">-0.01</td>
+            <td class="barcell"><span class="dbar"><i class="n" style="width:20.0%"></i></span></td>
+            <td class="num-neg">-0.08</td>
           </tr>
         
           <tr>
             <td class="name">US-Dollar</td>
-            <td class="barcell"><span class="dbar"><i class="n" style="width:0.8%"></i></span></td>
-            <td class="num-neg">-0.00</td>
+            <td class="barcell"><span class="dbar"><i class="n" style="width:9.1%"></i></span></td>
+            <td class="num-neg">-0.04</td>
+          </tr>
+        
+          <tr>
+            <td class="name">Öl (WTI)</td>
+            <td class="barcell"><span class="dbar"><i class="p" style="width:1.7%"></i></span></td>
+            <td class="num-pos">+0.01</td>
           </tr>
         
         </tbody>
       </table>
       <p class="meta" style="margin-top:10px">
         Modellgüte R² = 0.72 über 252 Tage. Nicht
-        faktor-getrieben: -0.19 pp. <b>Gleichlauf, nicht Ursache</b> —
+        faktor-getrieben: +0.15 pp. <b>Gleichlauf, nicht Ursache</b> —
         „vereinbar mit" heißt nicht „verursacht durch".
       </p>
     </div>
@@ -336,7 +352,7 @@
 <!-- ================= REGIME ================= -->
 <section>
   <h2>Verfassung der Weltwirtschaft</h2>
-  <p class="lede">Das Makro-Umfeld ist derzeit 'Goldilocks · Neutral'. Inflation (CPI) bei 3.7 % im Jahresvergleich Arbeitslosenquote 4.2 % 10J-Rendite 4.57 %.</p>
+  <p class="lede">Das Regime ist Goldilocks/Neutral: solides Wachstum (Growth-Z +0.59), fallende Inflation (Trend -0.57 bei CPI 3.7 %), aber deutlich gestiegene Zinsen (Rates-Z +0.81, Trend +1.65 bei 10J 4.57 %) und ein schwacher Dollar (-0.45). Der Risikoappetit ist neutral (VIX 17.7, HY-Spread 2.73 pp, S&P nur -1.5 % unter Hoch). Für die Sektorauswahl heißt das: Gesundheit (Rotations-Score 0.93, historischer Vorsprung +3.06 pp) führt, während der Tech-Sektor trotz starker Einzelnamen historisch schwach ist (Vorsprung -1.28 pp) und die hoch bewerteten KI/Chip-Titel nach der Rallye anfällig wirken.</p>
 
   <div class="grid grid-2">
     <div class="card table-scroll">
@@ -348,45 +364,45 @@
           
           <tr>
             <td class="name">Wachstum</td>
-            <td class="num-pos">+0.51</td>
-            <td class="barcell"><span class="dbar"><i class="p" style="width:11.9%"></i></span></td>
-            <td class="num-pos">+0.48</td>
+            <td class="num-pos">+0.59</td>
+            <td class="barcell"><span class="dbar"><i class="p" style="width:10.0%"></i></span></td>
+            <td class="num-pos">+0.40</td>
           </tr>
         
           
           
           <tr>
             <td class="name">Inflation</td>
-            <td class="num-pos">+0.33</td>
-            <td class="barcell"><span class="dbar"><i class="n" style="width:2.0%"></i></span></td>
-            <td class="num-neg">-0.08</td>
+            <td class="num-pos">+0.37</td>
+            <td class="barcell"><span class="dbar"><i class="n" style="width:14.3%"></i></span></td>
+            <td class="num-neg">-0.57</td>
           </tr>
         
           
           
           <tr>
             <td class="name">Zinsen</td>
-            <td class="num-pos">+0.86</td>
-            <td class="barcell"><span class="dbar"><i class="p" style="width:35.0%"></i></span></td>
-            <td class="num-pos">+1.40</td>
+            <td class="num-pos">+0.81</td>
+            <td class="barcell"><span class="dbar"><i class="p" style="width:41.2%"></i></span></td>
+            <td class="num-pos">+1.65</td>
           </tr>
         
           
           
           <tr>
             <td class="name">Risikoneigung</td>
-            <td class="num-pos">+0.29</td>
-            <td class="barcell"><span class="dbar"><i class="p" style="width:18.1%"></i></span></td>
-            <td class="num-pos">+0.72</td>
+            <td class="num-pos">+0.39</td>
+            <td class="barcell"><span class="dbar"><i class="p" style="width:24.3%"></i></span></td>
+            <td class="num-pos">+0.97</td>
           </tr>
         
           
           
           <tr>
             <td class="name">Dollar</td>
-            <td class="num-neg">-0.56</td>
-            <td class="barcell"><span class="dbar"><i class="n" style="width:14.4%"></i></span></td>
-            <td class="num-neg">-0.58</td>
+            <td class="num-neg">-0.45</td>
+            <td class="barcell"><span class="dbar"><i class="n" style="width:7.5%"></i></span></td>
+            <td class="num-neg">-0.30</td>
           </tr>
         
         </tbody>
@@ -408,13 +424,13 @@
         
           <tr><td class="name">10J-Rendite 4.57 %</td></tr>
         
-          <tr><td class="name">Zinskurve +0.41 pp (normal)</td></tr>
+          <tr><td class="name">Zinskurve +0.37 pp (normal)</td></tr>
         
-          <tr><td class="name">VIX bei 18.8</td></tr>
+          <tr><td class="name">VIX bei 17.7</td></tr>
         
-          <tr><td class="name">High-Yield-Spread 2.71 pp</td></tr>
+          <tr><td class="name">High-Yield-Spread 2.73 pp</td></tr>
         
-          <tr><td class="name">S&P 500 -2.0 % unter dem 52-Wochen-Hoch</td></tr>
+          <tr><td class="name">S&P 500 -1.5 % unter dem 52-Wochen-Hoch</td></tr>
         
         </tbody>
       </table>
@@ -422,11 +438,91 @@
       <p class="meta" style="margin-top:14px">
         <b style="color:var(--ink-2)">Historisch ähnliche Phasen</b> (20 Tage,
         Mindestabstand ein Quartal):<br>
-        Okt 2011 · Apr 2012 · Okt 2012 · Jun 2013 · Sep 2013 · Dez 2013 · Feb 2014 · Mai 2014 · Jul 2014 · Mär 2016 · Nov 2016 · Feb 2017 · Apr 2017 · Jun 2017 · Sep 2017 · Nov 2017 · Jan 2018 · Aug 2018 · Feb 2022 · Apr 2024
+        Feb 2012 · Mai 2012 · Okt 2012 · Jun 2013 · Sep 2013 · Dez 2013 · Feb 2014 · Mai 2014 · Jul 2014 · Mär 2016 · Nov 2016 · Feb 2017 · Apr 2017 · Sep 2017 · Nov 2017 · Jan 2018 · Jun 2018 · Aug 2018 · Feb 2022 · Apr 2024
       </p>
       
     </div>
   </div>
+</section>
+
+<!-- ============ HISTORISCHE ANALOGIE (6 MONATE) ============ -->
+<section>
+  <h2>Historische Analogie — 6 Monate</h2>
+  <p class="lede">
+    Das heutige Makro-Regime ähnelt 20 Phasen der Vergangenheit.
+    Gezeigt wird, wie die Wirtschaftsbereiche in den <b>sechs Monaten nach solchen Tagen</b>
+    gegenüber ihrer Basisrate liefen — nur konfidente Muster, nur dieser eine Horizont.
+  </p>
+
+  <div class="card" style="border-left:3px solid var(--accent); margin-bottom:14px">
+    <p class="meta" style="margin:0">
+      <b>Warum ausschließlich 6 Monate?</b> Von allen Horizonten übersteht nur dieser den
+      Backtest: auf 17 unabhängigen globalen Indizes +0,23 Korrelation bei 60 % Trefferquote,
+      stabil über die Krisen 2000 und 2008. 1&nbsp;Monat, 3&nbsp;Monate und 12&nbsp;Monate sind
+      statistisch nicht von Rauschen zu trennen und werden bewusst weggelassen. Ein <b>schmaler,
+      mehrfach gegengeprüfter Vorsprung</b> — keine Prognose.
+    </p>
+  </div>
+
+  
+  <div class="card table-scroll">
+    <table>
+      <thead><tr>
+        <th>Bereich</th><th>Median nach 6M</th><th>Basisrate</th>
+        <th>Vorsprung</th><th>Trefferquote</th><th>n</th><th></th>
+      </tr></thead>
+      <tbody>
+      
+        <tr>
+          <td class="name">Gesundheit & Pharma</td>
+          <td class="num-pos">+8.8 %</td>
+          <td class="meta">+5.7 %</td>
+          <td class="num-pos">+3.1</td>
+          <td>80 %</td>
+          <td class="meta">20</td>
+          <td class="barcell"><span class="dbar"><i class="p" style="width:19.2%"></i></span></td>
+        </tr>
+      
+        <tr>
+          <td class="name">Industrie & Transport</td>
+          <td class="num-pos">+4.9 %</td>
+          <td class="meta">+5.9 %</td>
+          <td class="num-neg">-1.0</td>
+          <td>65 %</td>
+          <td class="meta">20</td>
+          <td class="barcell"><span class="dbar"><i class="n" style="width:6.1%"></i></span></td>
+        </tr>
+      
+        <tr>
+          <td class="name">Technologie</td>
+          <td class="num-pos">+7.0 %</td>
+          <td class="meta">+8.3 %</td>
+          <td class="num-neg">-1.3</td>
+          <td>75 %</td>
+          <td class="meta">20</td>
+          <td class="barcell"><span class="dbar"><i class="n" style="width:8.0%"></i></span></td>
+        </tr>
+      
+        <tr>
+          <td class="name">Energie & Öl</td>
+          <td class="num-pos">+0.4 %</td>
+          <td class="meta">+3.8 %</td>
+          <td class="num-neg">-3.4</td>
+          <td>50 %</td>
+          <td class="meta">20</td>
+          <td class="barcell"><span class="dbar"><i class="n" style="width:21.5%"></i></span></td>
+        </tr>
+      
+      </tbody>
+    </table>
+    <p class="meta" style="margin-top:10px">
+      Episoden, die dem heutigen Regime ähneln: Feb 2012 · Mai 2012 · Okt 2012 · Jun 2013 · Sep 2013 · Dez 2013 · Feb 2014 · Mai 2014 · Jul 2014 · Mär 2016 · Nov 2016 · Feb 2017 · Apr 2017 · Sep 2017 · Nov 2017 · Jan 2018 · Jun 2018 · Aug 2018 · Feb 2022 · Apr 2024.<br>
+      „Vorsprung" = Median nach ähnlichen Tagen minus Basisrate, über 20
+      Analog-Beobachtungen. Positiv = Rückenwind, negativ = Gegenwind. Zahl trägt die Aussage,
+      Farbe verstärkt nur.
+    </p>
+  </div>
+  
 </section>
 
 <!-- ================= HOT TAKES ================= -->
@@ -441,35 +537,324 @@
   </p>
 
   
+  <div class="card" style="border-left:3px solid var(--accent); margin-bottom:14px">
+    <p class="meta" style="margin:0">
+      <b>Wie viele Wetten sind das wirklich?</b>
+      Die 6 Thesen entsprechen effektiv
+      <b>4.5 unabhängigen Wetten</b> — Konzentration
+      <b>niedrig</b> (mittlere gerichtete Korrelation
+      +0.06).
+      Am stärksten überlappen AMD und
+      INTC (0.64
+      Gleichlauf, gleiche Richtung).<br>
+      Gleichlaufende Thesen bestätigen einander <b>nicht</b> — sie sind ein Signal, mehrfach
+      gezählt. Die Richtung wird mitgerechnet: eine bullische und eine bärische These auf
+      gleichlaufenden Titeln sind eine Absicherung, keine Klumpenbildung.
+    </p>
+  </div>
+  
+
+  
+  <article class="take">
+    <div class="take-head">
+      <span class="dir bullish">BULLISH</span>
+      <span class="ticker">UNP</span>
+      <span class="tag">Rückenwind</span>
+      <span class="tag">Industrie & Transport</span>
+      <span class="tag">6 Monate (Historie für diesen Horizont validiert)</span>
+      <span class="conv" style="margin-left:auto">
+        <span class="meta">Konfidenz</span>
+        <span class="conv-track"><span class="conv-fill" style="width:63%"></span></span>
+        <span class="meta" style="font-variant-numeric:tabular-nums">0.63</span>
+      </span>
+    </div>
+
+    <h3>Kein Bruch, aber das sauberste historische Signal im ganzen Feld</h3>
+    <p>Union Pacific vereint Trend (Score 1.11, +9.88 % im Monat, nur -0.7 % unter dem 52W-Hoch), Qualität (Score 1.64, Nettomarge 29.2 %, ROE 40.69 %) und positiven Sektor-Fit (0.02). Der historische Vorsprung ist mit +3.73 pp und einer Trefferquote von 85 % (Vorsprung +13 pp) der beste aller Kandidaten -- in 17 von 20 Vergleichsfällen war die 6M-Rendite positiv. Anders als bei den Value-Fällen gibt es hier keine Spannung (-0.57); das ist ein Momentum- und Regime-Konsens, kein Contrarian-Trade.</p>
+
+    
+    <div class="numbers">
+      <span>Historischer Vorsprung 6M: +3.73 pp</span><span>Trefferquote: 85 %</span><span>Trend-Score: 1.11</span><span>Umsatzwachstum: 3.2 %</span>
+    </div>
+    
+
+    <div class="counter"><b>Dagegen spricht:</b> Das Umsatzwachstum ist mit nur 3.2 % mager, das Forward-KGV von 21.61 nicht billig, und die fehlende Spannung heißt: Vieles ist bereits eingepreist, der Kurs steht praktisch am Hoch.</div>
+
+    
+    <details class="falsify">
+      <summary>Woran die These scheitert</summary>
+      <ul><li>Union Pacific meldet ein Umsatzwachstum unter dem aktuellen Wert von 3.2 % (Fundament)</li><li>Der Industrie-Rotations-Score (aktuell 0.15) und Sektor-Fit (0.02) drehen ins Negative (Umfeld)</li><li>Die Nettomarge fällt in einem Bericht unter den aktuellen Wert von 29.2 % (Fundament)</li></ul>
+    </details>
+    
+
+    
+    
+    <div class="sources">
+      
+
+      
+      <details class="falsify">
+        <summary>Umfeld: Meldungen aus Industrie & Transport
+          (4) — nicht über UNP</summary>
+        <ul>
+        
+          <li><a href="https://www.cnbc.com/2026/07/20/tsmc-arizona-fab-capacity-ai-chip-demand.html" target="_blank" rel="noopener">TSMC is accelerating Arizona factory build-out to capitalize on AI 'megatrend,' CFO says</a>
+              <span class="meta">— CNBC Technology, 20.07.2026</span></li>
+        
+          <li><a href="https://www.bbc.co.uk/news/articles/c62122pgjqdo?at_medium=RSS&at_campaign=rss" target="_blank" rel="noopener">Five headaches Andy Burnham will have to deal with as PM</a>
+              <span class="meta">— BBC Business, 17.07.2026</span></li>
+        
+          <li><a href="https://www.investing.com/news/stock-market-news/private-investors-must-pile-cash-into-defence-to-fill-public-funding-gap-executives-say-4801411" target="_blank" rel="noopener">Private investors must pile cash into defence to fill public funding gap, executives say</a>
+              <span class="meta">— Investing.com, 20.07.2026</span></li>
+        
+          <li><a href="https://news.google.com/rss/articles/CBMipwFBVV95cUxPSkdjQ2RNcGFGUFRBWTlSSDA0SGJhRGJrbDJ4OWJSLXlTOUo3Yk8wYjBONUpTelM1SlVNNjlWNllSUWloWVljU3p2UTRhUTFqZDFKT05EcUg4QWg0ZzFEV0VRd05TNVdZeDJ5MnREaUFaR1ZfdWhucnNSdUV3T3RObTZuQWFlQXk5QWxJekVEMWM4ZHNBOWx1a3h6ODFxTHhqQmlmUzFGVQ?oc=5" target="_blank" rel="noopener">Stay Ahead of the Game With Honeywell International (HON) Q2 Earnings: Wall Street's Insights on Key Metrics - Yahoo Finance</a>
+              <span class="meta">— Google News Finanzen, 20.07.2026</span></li>
+        
+        </ul>
+        <p class="meta" style="margin:.4rem 0 0">
+          Diese Meldungen betreffen andere Firmen des Sektors. Sie stehen hier, weil es zu
+          UNP zu wenige eigene gibt — sie belegen die These nicht.
+        </p>
+      </details>
+      
+    </div>
+    
+  </article>
+  
+  <article class="take">
+    <div class="take-head">
+      <span class="dir bearish">BEARISH</span>
+      <span class="ticker">AMD</span>
+      <span class="tag">Überhitzt</span>
+      <span class="tag">Technologie</span>
+      <span class="tag">6 Monate (Historie für diesen Horizont validiert)</span>
+      <span class="conv" style="margin-left:auto">
+        <span class="meta">Konfidenz</span>
+        <span class="conv-track"><span class="conv-fill" style="width:62%"></span></span>
+        <span class="meta" style="font-variant-numeric:tabular-nums">0.62</span>
+      </span>
+    </div>
+
+    <h3>Nach +112 % in 12 Monaten sagt die Historie in diesem Regime -18.6 pp voraus</h3>
+    <p>AMD ist mit +111.95 % (12M) und +55.19 % über der 200-Tage-Linie stark überdehnt. Das Trailing-KGV von 171.19 und ein Bewertungs-Score von -1.73 spiegeln, dass der Preis den Fundamentaldaten weit vorausläuft (Spannung -3.08). Die Qualität ist schwach (Nettomarge 13.37 %, ROE 8.06 %, Score -0.72), das Analystenziel liegt nur noch +4.77 % entfernt. Das historische Signal ist das schlechteste im Feld: 6M-Median -7.91 % gegen +10.7 % Basis (Vorsprung -18.6 pp), Trefferquote nur 40 %, schlechtester Fall -72.1 % -- 20 Beobachtungen, also ein ernstzunehmender, wenn auch schwacher Hinweis.</p>
+
+    
+    <div class="numbers">
+      <span>KGV nachlaufend: 171.19</span><span>Historischer Vorsprung 6M: -18.6 pp</span><span>Trefferquote: 40 %</span><span>Abstand zum Analystenziel: +4.77 %</span>
+    </div>
+    
+
+    <div class="counter"><b>Dagegen spricht:</b> Mit 37.8 % Umsatzwachstum und dem KI-Rückenwind (der Nachrichtenfluss im Sektor nennt AMDs Helios-Rack-System mit Microsoft als Kunde) kann der Boom die hohe Bewertung länger tragen als die Historie vermuten lässt.</div>
+
+    
+    <details class="falsify">
+      <summary>Woran die These scheitert</summary>
+      <ul><li>AMD beschleunigt das Umsatzwachstum über den aktuellen Wert von 37.8 % und die Nettomarge steigt deutlich über 13.37 % (Fundament)</li><li>Der Abstand zum 52W-Hoch (aktuell -10.98 %) schließt sich zu einem neuen Hoch begleitet von steigender Sektorbreite (Umfeld/Ereignis)</li><li>Das Analystenziel wird nach oben revidiert, sodass der Abstand über die heutigen +4.77 % steigt (Fundament/Ereignis)</li></ul>
+    </details>
+    
+
+    
+    
+    <div class="sources">
+      
+
+      
+      <details class="falsify">
+        <summary>Umfeld: Meldungen aus Technologie
+          (4) — nicht über AMD</summary>
+        <ul>
+        
+          <li><a href="https://news.google.com/rss/articles/CBMiwwFBVV95cUxPQmcyZEZVbjRiUDJRc0dlMDFwR2hhUGlERFRPZVpNREktaVBVay11SFJ2WG1tM3VTUFlXMW8xWG8yMnpmMjZQTUFOdUk3UThNYjYxN2o0MGVVYjFac2lWdlpOZV84T0dGanU2anNSWEI0MjNyNmJFNVF6SWhQd3g0VGU2c1NoeEd4YmRfRzhXZ0RzMDIyMks4bmFzZHRMRHlOclkydFVhdU5YRF9HSkZ0TTQ5c09jbUJrNG5oMWJ2XzB6UE0?oc=5" target="_blank" rel="noopener">Stock market today: Dow, S&P 500, Nasdaq drop as chip stocks tumble, Alphabet stock sinks - Yahoo Finance</a>
+              <span class="meta">— Google News Finanzen, 16.07.2026</span></li>
+        
+          <li><a href="https://www.cnbc.com/2026/07/17/softbank-chip-stocks-asia-wall-street-ai-rout.html" target="_blank" rel="noopener">SoftBank sinks over 9% as Asia chip stocks track Wall Street AI sell-off</a>
+              <span class="meta">— CNBC Technology, 17.07.2026</span></li>
+        
+          <li><a href="https://www.marketwatch.com/story/irens-stock-surges-as-the-neocloud-lands-2-8-billion-worth-of-new-deals-831302c3?mod=mw_rss_topstories" target="_blank" rel="noopener">Iren’s stock surges as the neocloud lands $2.8 billion worth of new deals</a>
+              <span class="meta">— MarketWatch, 20.07.2026</span></li>
+        
+          <li><a href="https://finance.yahoo.com/technology/ai/articles/nebius-775-million-debt-deal-161015706.html" target="_blank" rel="noopener">Nebius’ $775 Million Debt Deal Changes Everything About Its AI Growth Story</a>
+              <span class="meta">— Yahoo Finance, 20.07.2026</span></li>
+        
+        </ul>
+        <p class="meta" style="margin:.4rem 0 0">
+          Diese Meldungen betreffen andere Firmen des Sektors. Sie stehen hier, weil es zu
+          AMD zu wenige eigene gibt — sie belegen die These nicht.
+        </p>
+      </details>
+      
+    </div>
+    
+  </article>
+  
+  <article class="take">
+    <div class="take-head">
+      <span class="dir bullish">BULLISH</span>
+      <span class="ticker">ISRG</span>
+      <span class="tag">Übersehen</span>
+      <span class="tag">Gesundheit & Pharma</span>
+      <span class="tag">6 Monate (Historie für diesen Horizont validiert)</span>
+      <span class="conv" style="margin-left:auto">
+        <span class="meta">Konfidenz</span>
+        <span class="conv-track"><span class="conv-fill" style="width:60%"></span></span>
+        <span class="meta" style="font-variant-numeric:tabular-nums">0.60</span>
+      </span>
+    </div>
+
+    <h3>Der stärkste Sektor trägt einen ausverkauften Marktführer</h3>
+    <p>Intuitive Surgical steht im mit Abstand stärksten Sektor: Gesundheit hat den höchsten Rotations-Score (0.93), 80 % der Titel über der 200-Tage-Linie und einen historischen Vorsprung von +3.06 pp. Der Titel selbst ist mit -20.18 % (3M) und -39.06 % (12M) stark abverkauft, hat aber einen Sektor-Rückenwind-Score von 0.93 und ein Umsatzwachstum von 18.5 % bei 28.45 % Nettomarge. Die Spannung von 1.97 zeigt den Bruch zwischen Fundament und Kurs. Historisch lag die 6M-Rendite im Median bei 9.66 % gegen 8.02 % Basis (+1.64 pp, 65 % Trefferquote, 20 Beobachtungen).</p>
+
+    
+    <div class="numbers">
+      <span>Sektor-Rotations-Score Gesundheit: 0.93</span><span>Spannung Fundament-minus-Kurs: 1.97</span><span>Umsatzwachstum: 18.5 %</span><span>Historischer Vorsprung Sektor 6M: +3.06 pp</span>
+    </div>
+    
+
+    <div class="counter"><b>Dagegen spricht:</b> Mit Trailing-KGV 40.36 und Forward-KGV 29.25 ist der Titel absolut teuer (Bewertungs-Score -1.43); ein hohes Beta von 1.46 macht ihn in einem Zinsanstieg verwundbar.</div>
+
+    
+    <details class="falsify">
+      <summary>Woran die These scheitert</summary>
+      <ul><li>Der Gesundheits-Rotations-Score (aktuell 0.93) fällt und die Sektorbreite sinkt unter die aktuellen 80 % über 200-Tage-Linie (Umfeld)</li><li>Intuitive meldet ein Umsatzwachstum unter dem aktuellen Wert von 18.5 % (Fundament)</li><li>Das Forward-KGV steigt durch Gewinnrevisionen weiter über den heutigen Wert von 29.25 (Fundament)</li></ul>
+    </details>
+    
+
+    
+    
+    <div class="sources">
+      
+
+      
+      <details class="falsify">
+        <summary>Umfeld: Meldungen aus Gesundheit & Pharma
+          (3) — nicht über ISRG</summary>
+        <ul>
+        
+          <li><a href="https://www.marketwatch.com/story/detecting-cyclospora-is-notoriously-difficult-heres-what-the-fdas-apology-to-taylor-farms-means-cafd3a2a?mod=mw_rss_topstories" target="_blank" rel="noopener">Detecting cyclospora is ‘notoriously difficult.’ Here’s what the FDA’s apology to Taylor Farms means.</a>
+              <span class="meta">— MarketWatch, 20.07.2026</span></li>
+        
+          <li><a href="https://news.google.com/rss/articles/CBMimwFBVV95cUxOSHFuRkdZR3l0RTM3Yjg3MFFKbE10ZlJvQUR6OEJRN1dkOXhNektsQXM4ZlhQbklPdUxBM3pZaFlURWRMeUp0b010dVVxTUlKSlVpUl9qLXBSNWo5MG9JNjc1MHJUdkIyRGFzdnAwNlA5bldqY2Y0OVd4OHl2anVHcWRtc0ZQVWpxekpSc09Xd3kxWVlOdUhyRm84TQ?oc=5" target="_blank" rel="noopener">Eli Lilly and Company (LLY) Is a Trending Stock: Facts to Know Before Betting on It - Yahoo Finance</a>
+              <span class="meta">— Google News Finanzen, 20.07.2026</span></li>
+        
+          <li><a href="https://finance.yahoo.com/research/reports/ARGUS_3479_AnalystReport_1784545585000?yptr=yahoo&ncid=yahooproperties_plusresear_nm5q6ze1cei" target="_blank" rel="noopener">Analyst Report: Unitedhealth Group Inc</a>
+              <span class="meta">— Yahoo Finance, 20.07.2026</span></li>
+        
+        </ul>
+        <p class="meta" style="margin:.4rem 0 0">
+          Diese Meldungen betreffen andere Firmen des Sektors. Sie stehen hier, weil es zu
+          ISRG zu wenige eigene gibt — sie belegen die These nicht.
+        </p>
+      </details>
+      
+    </div>
+    
+  </article>
+  
+  <article class="take">
+    <div class="take-head">
+      <span class="dir bullish">BULLISH</span>
+      <span class="ticker">ORCL</span>
+      <span class="tag">Übersehen</span>
+      <span class="tag">Technologie</span>
+      <span class="tag">6 Monate (Historie für diesen Horizont validiert)</span>
+      <span class="conv" style="margin-left:auto">
+        <span class="meta">Konfidenz</span>
+        <span class="conv-track"><span class="conv-fill" style="width:58%"></span></span>
+        <span class="meta" style="font-variant-numeric:tabular-nums">0.58</span>
+      </span>
+    </div>
+
+    <h3>Kurssturz von -48 % trifft auf Forward-KGV von 11 -- die Spannung ist die höchste im Feld</h3>
+    <p>Oracle hat 12 Monate -48.54 % und 3 Monate -33.99 % verloren, während die Fundamentaldaten intakt bleiben: Umsatzwachstum 20.6 %, Nettomarge 25.37 %, Eigenkapitalrendite 53.38 %. Das Forward-KGV von 11.29 liegt weit unter dem Trailing-KGV von 21.07, der Markt preist also einen Gewinnsprung ein, den der Kurs nicht honoriert. Die Spannung Fundament-minus-Kurs von 2.36 ist die größte aller Kandidaten. In vergleichbaren Regimetagen lag die 6M-Rendite im Median bei 7.26 % gegen 5.35 % Basisrate (Vorsprung +1.9 pp, Trefferquote 70 %, 20 Beobachtungen -- nur ein schwacher Hinweis).</p>
+
+    
+    <div class="numbers">
+      <span>Forward-KGV: 11.29</span><span>Spannung Fundament-minus-Kurs: 2.36</span><span>Umsatzwachstum: 20.6 %</span><span>Historischer Vorsprung 6M: +1.9 pp</span>
+    </div>
+    
+
+    <div class="counter"><b>Dagegen spricht:</b> Der Trend-Score von -2.4 und die Volatilität von 48.31 % zeigen einen intakten Abwärtstrend; das niedrige Forward-KGV kann auch heißen, dass der Markt Gewinnschätzungen für nicht haltbar hält.</div>
+
+    
+    <details class="falsify">
+      <summary>Woran die These scheitert</summary>
+      <ul><li>Oracle meldet im nächsten Quartalsbericht ein Umsatzwachstum unter 20.6 % (Fundament -- trifft das Wachstumsargument)</li><li>Das Forward-KGV steigt durch eine Gewinnwarnung über das Trailing-KGV von 21.07 (Fundament -- widerlegt die Unterbewertung)</li><li>Der Tech-Rotations-Score (aktuell 0.04) fällt klar ins Negative und die KI/Chip-Nachrichtenlage (sector_event_tone +0.03) kippt (Umfeld)</li></ul>
+    </details>
+    
+
+    
+    
+    <div class="sources">
+      
+      <details class="falsify">
+        <summary>Meldungen zu ORCL (1)</summary>
+        <ul>
+        
+          <li><a href="https://www.cnbc.com/2026/07/20/amd-helios-microsoft-ai-nvidia.html" target="_blank" rel="noopener">AMD launches Helios, its first rack AI system to rival Nvidia, adding Microsoft as newest buyer</a>
+              <span class="meta">— CNBC Technology, 20.07.2026</span></li>
+        
+        </ul>
+      </details>
+      
+
+      
+      <details class="falsify">
+        <summary>Umfeld: Meldungen aus Technologie
+          (4) — nicht über ORCL</summary>
+        <ul>
+        
+          <li><a href="https://news.google.com/rss/articles/CBMiwwFBVV95cUxPQmcyZEZVbjRiUDJRc0dlMDFwR2hhUGlERFRPZVpNREktaVBVay11SFJ2WG1tM3VTUFlXMW8xWG8yMnpmMjZQTUFOdUk3UThNYjYxN2o0MGVVYjFac2lWdlpOZV84T0dGanU2anNSWEI0MjNyNmJFNVF6SWhQd3g0VGU2c1NoeEd4YmRfRzhXZ0RzMDIyMks4bmFzZHRMRHlOclkydFVhdU5YRF9HSkZ0TTQ5c09jbUJrNG5oMWJ2XzB6UE0?oc=5" target="_blank" rel="noopener">Stock market today: Dow, S&P 500, Nasdaq drop as chip stocks tumble, Alphabet stock sinks - Yahoo Finance</a>
+              <span class="meta">— Google News Finanzen, 16.07.2026</span></li>
+        
+          <li><a href="https://www.cnbc.com/2026/07/17/softbank-chip-stocks-asia-wall-street-ai-rout.html" target="_blank" rel="noopener">SoftBank sinks over 9% as Asia chip stocks track Wall Street AI sell-off</a>
+              <span class="meta">— CNBC Technology, 17.07.2026</span></li>
+        
+          <li><a href="https://www.marketwatch.com/story/irens-stock-surges-as-the-neocloud-lands-2-8-billion-worth-of-new-deals-831302c3?mod=mw_rss_topstories" target="_blank" rel="noopener">Iren’s stock surges as the neocloud lands $2.8 billion worth of new deals</a>
+              <span class="meta">— MarketWatch, 20.07.2026</span></li>
+        
+          <li><a href="https://finance.yahoo.com/technology/ai/articles/nebius-775-million-debt-deal-161015706.html" target="_blank" rel="noopener">Nebius’ $775 Million Debt Deal Changes Everything About Its AI Growth Story</a>
+              <span class="meta">— Yahoo Finance, 20.07.2026</span></li>
+        
+        </ul>
+        <p class="meta" style="margin:.4rem 0 0">
+          Diese Meldungen betreffen andere Firmen des Sektors. Sie stehen hier, weil es zu
+          ORCL zu wenige eigene gibt — sie belegen die These nicht.
+        </p>
+      </details>
+      
+    </div>
+    
+  </article>
+  
   <article class="take">
     <div class="take-head">
       <span class="dir bearish">BEARISH</span>
       <span class="ticker">ARM</span>
       <span class="tag">Überhitzt</span>
       <span class="tag">Technologie</span>
-      <span class="tag">3-6 Monate</span>
+      <span class="tag">6 Monate (Historie für diesen Horizont validiert)</span>
       <span class="conv" style="margin-left:auto">
         <span class="meta">Konfidenz</span>
-        <span class="conv-track"><span class="conv-fill" style="width:72%"></span></span>
-        <span class="meta" style="font-variant-numeric:tabular-nums">0.72</span>
+        <span class="conv-track"><span class="conv-fill" style="width:58%"></span></span>
+        <span class="meta" style="font-variant-numeric:tabular-nums">0.58</span>
       </span>
     </div>
 
-    <h3>Arm Holdings plc: Der Kurs läuft dem Fundament davon</h3>
-    <p>Arm Holdings plc hat einen starken Aufwärtstrend, den die Bewertung nicht mehr deckt. Der Kurs steht +75 % auf Jahressicht und 32 % über der 200-Tage-Linie. Dem KGV von 86.8 steht ein Umsatzwachstum von +20.1 % gegenüber. Nach vergleichbaren Makro-Regimetagen lag die Drei-Monats-Rendite im Median 1.0 Prozentpunkte unter dem Normalfall (n=19). Das Makro-Umfeld ist derzeit: Goldilocks · Neutral.</p>
+    <h3>KGV von 319 und Beta 3.77 -- der Momentum-Bruch hat begonnen</h3>
+    <p>Arm ist mit einem Trailing-KGV von 319.01 und einem Forward-KGV von 89.08 die extremste Bewertung im Feld; die Spannung von -3.16 (Preis über Fundament) ist die höchste. Der Trend-Score von 2.26 spiegelt +76.95 % über 12 Monate, aber der Monat zeigt bereits -20.25 % -- der Bruch läuft. Mit Beta 3.77 ist der Titel der volatilste Hebel auf die Chip-Stimmung, und der Nachrichtenfluss im Sektor ist von der AI-Ausverkaufswelle geprägt (SoftBank -9 %, Chip-Aktien fallen). Das historische Signal ist neutral bis leicht negativ (Vorsprung -1.28 pp, Trefferquoten-Vorsprung -7.6 pp).</p>
 
     
     <div class="numbers">
-      <span>Rendite 1 Monat (%): -20.07</span><span>Rendite 3 Monate (%): 27.74</span><span>KGV (nachlaufend): 318.08</span><span>KGV (erwartet): 86.76</span>
+      <span>KGV nachlaufend: 319.01</span><span>Spannung Fundament-minus-Kurs: -3.16</span><span>Rendite 1 Monat: -20.25 %</span><span>Beta: 3.77</span>
     </div>
     
 
-    <div class="counter"><b>Dagegen spricht:</b> Überbewertung ist kein Timing-Signal. Teure Werte können lange teuer bleiben, solange die Ergebnisse liefern.</div>
+    <div class="counter"><b>Dagegen spricht:</b> Das Umsatzwachstum von 20.1 % und die Lizenz-Rolle im gesamten KI-Ökosystem können bei nachlassender Panik eine schnelle Erholung tragen; das Analystenziel liegt noch +11.1 % höher.</div>
 
     
     <details class="falsify">
       <summary>Woran die These scheitert</summary>
-      <ul><li>Die Quartalszahlen übertreffen die Erwartungen deutlich -- dann war die Bewertung gerechtfertigt und nicht überzogen.</li><li>Der Sektor-Rückenwind verstärkt sich, statt nachzulassen.</li><li>Der Kurs bricht nach oben aus, ohne dass sich das Fundament verschlechtert.</li></ul>
+      <ul><li>Arm liefert einen Gewinnsprung, der das Forward-KGV deutlich unter die heutigen 89.08 drückt (Fundament)</li></ul>
     </details>
     
 
@@ -484,17 +869,17 @@
           (4) — nicht über ARM</summary>
         <ul>
         
+          <li><a href="https://news.google.com/rss/articles/CBMiwwFBVV95cUxPQmcyZEZVbjRiUDJRc0dlMDFwR2hhUGlERFRPZVpNREktaVBVay11SFJ2WG1tM3VTUFlXMW8xWG8yMnpmMjZQTUFOdUk3UThNYjYxN2o0MGVVYjFac2lWdlpOZV84T0dGanU2anNSWEI0MjNyNmJFNVF6SWhQd3g0VGU2c1NoeEd4YmRfRzhXZ0RzMDIyMks4bmFzZHRMRHlOclkydFVhdU5YRF9HSkZ0TTQ5c09jbUJrNG5oMWJ2XzB6UE0?oc=5" target="_blank" rel="noopener">Stock market today: Dow, S&P 500, Nasdaq drop as chip stocks tumble, Alphabet stock sinks - Yahoo Finance</a>
+              <span class="meta">— Google News Finanzen, 16.07.2026</span></li>
+        
           <li><a href="https://www.cnbc.com/2026/07/17/softbank-chip-stocks-asia-wall-street-ai-rout.html" target="_blank" rel="noopener">SoftBank sinks over 9% as Asia chip stocks track Wall Street AI sell-off</a>
               <span class="meta">— CNBC Technology, 17.07.2026</span></li>
         
-          <li><a href="https://www.cnbc.com/2026/07/16/alibaba-baidu-shares-jump-apple-ai-partnership-.html" target="_blank" rel="noopener">Alibaba and Baidu shares jump in Hong Kong on Apple AI partnership</a>
-              <span class="meta">— CNBC Technology, 16.07.2026</span></li>
+          <li><a href="https://www.marketwatch.com/story/irens-stock-surges-as-the-neocloud-lands-2-8-billion-worth-of-new-deals-831302c3?mod=mw_rss_topstories" target="_blank" rel="noopener">Iren’s stock surges as the neocloud lands $2.8 billion worth of new deals</a>
+              <span class="meta">— MarketWatch, 20.07.2026</span></li>
         
-          <li><a href="https://www.cnbc.com/2026/07/16/tsmc-second-quarter-profit-.html" target="_blank" rel="noopener">TSMC to invest additional $100 billion in Arizona after second-quarter profit soars 77%</a>
-              <span class="meta">— CNBC Technology, 16.07.2026</span></li>
-        
-          <li><a href="https://www.marketwatch.com/story/chip-stocks-enter-bear-market-territory-a-bofa-analyst-says-not-to-panic-4d34df17?mod=mw_rss_topstories" target="_blank" rel="noopener">Chip stocks enter bear-market territory. A BofA analyst says not to panic.</a>
-              <span class="meta">— MarketWatch, 17.07.2026</span></li>
+          <li><a href="https://finance.yahoo.com/technology/ai/articles/nebius-775-million-debt-deal-161015706.html" target="_blank" rel="noopener">Nebius’ $775 Million Debt Deal Changes Everything About Its AI Growth Story</a>
+              <span class="meta">— Yahoo Finance, 20.07.2026</span></li>
         
         </ul>
         <p class="meta" style="margin:.4rem 0 0">
@@ -510,32 +895,32 @@
   <article class="take">
     <div class="take-head">
       <span class="dir bearish">BEARISH</span>
-      <span class="ticker">AMD</span>
+      <span class="ticker">INTC</span>
       <span class="tag">Überhitzt</span>
       <span class="tag">Technologie</span>
-      <span class="tag">3-6 Monate</span>
+      <span class="tag">6 Monate (Historie für diesen Horizont validiert)</span>
       <span class="conv" style="margin-left:auto">
         <span class="meta">Konfidenz</span>
-        <span class="conv-track"><span class="conv-fill" style="width:72%"></span></span>
-        <span class="meta" style="font-variant-numeric:tabular-nums">0.72</span>
+        <span class="conv-track"><span class="conv-fill" style="width:55%"></span></span>
+        <span class="meta" style="font-variant-numeric:tabular-nums">0.55</span>
       </span>
     </div>
 
-    <h3>Advanced Micro Devices, Inc.: Der Kurs läuft dem Fundament davon</h3>
-    <p>Advanced Micro Devices, Inc. hat einen starken Aufwärtstrend, den die Bewertung nicht mehr deckt. Der Kurs steht +112 % auf Jahressicht und 50 % über der 200-Tage-Linie. Dem KGV von 36.8 steht ein Umsatzwachstum von +37.8 % gegenüber. Nach vergleichbaren Makro-Regimetagen lag die Drei-Monats-Rendite im Median 9.4 Prozentpunkte unter dem Normalfall (n=19). Das Makro-Umfeld ist derzeit: Goldilocks · Neutral.</p>
+    <h3>+158 % in 12 Monaten mit negativer Marge -- die Rallye steht auf keinem Fundament</h3>
+    <p>Intel ist nach +157.97 % (12M) das Paradebeispiel für Preis ohne Fundament: Nettomarge -5.9 %, Eigenkapitalrendite -2.91 %, Qualitäts-Score -1.56, Forward-KGV 61.44 trotz nur 7.2 % Umsatzwachstum. Die Spannung von -2.56 zeigt die Diskrepanz. Der Trend (Score 1.77) bröckelt bereits mit -24.7 % im letzten Monat, und das Analystenziel liegt nur noch +7.62 % höher. Die Historie bietet keinen Rückhalt (6M-Vorsprung -0.77 pp, Trefferquote 55 %).</p>
 
     
     <div class="numbers">
-      <span>Rendite 1 Monat (%): -4.95</span><span>Rendite 3 Monate (%): 16.9</span><span>KGV (nachlaufend): 164.7</span><span>KGV (erwartet): 36.82</span>
+      <span>Nettomarge: -5.9 %</span><span>Forward-KGV: 61.44</span><span>Rendite 1 Monat: -24.7 %</span><span>Historischer Vorsprung 6M: -0.77 pp</span>
     </div>
     
 
-    <div class="counter"><b>Dagegen spricht:</b> Überbewertung ist kein Timing-Signal. Teure Werte können lange teuer bleiben, solange die Ergebnisse liefern.</div>
+    <div class="counter"><b>Dagegen spricht:</b> Ein glaubhafter Turnaround mit positiven Margen und staatlicher/Foundry-Unterstützung könnte die Neubewertung rechtfertigen, die der Markt schon vorwegnimmt.</div>
 
     
     <details class="falsify">
       <summary>Woran die These scheitert</summary>
-      <ul><li>Die Quartalszahlen übertreffen die Erwartungen deutlich -- dann war die Bewertung gerechtfertigt und nicht überzogen.</li><li>Der Sektor-Rückenwind verstärkt sich, statt nachzulassen.</li><li>Der Kurs bricht nach oben aus, ohne dass sich das Fundament verschlechtert.</li></ul>
+      <ul><li>Intel meldet eine wieder positive Nettomarge über 0 % (aktuell -5.9 %) (Fundament)</li><li>Das Umsatzwachstum beschleunigt über den aktuellen Wert von 7.2 % (Fundament)</li><li>Die Chip-Nachrichtenlage im Sektor dreht klar positiv (aktuell vom AI-Ausverkauf geprägt) und die Tech-Breite über 200-Tage-Linie steigt über die heutigen 62 % (Umfeld)</li></ul>
     </details>
     
 
@@ -547,427 +932,25 @@
       
       <details class="falsify">
         <summary>Umfeld: Meldungen aus Technologie
-          (4) — nicht über AMD</summary>
+          (4) — nicht über INTC</summary>
         <ul>
+        
+          <li><a href="https://news.google.com/rss/articles/CBMiwwFBVV95cUxPQmcyZEZVbjRiUDJRc0dlMDFwR2hhUGlERFRPZVpNREktaVBVay11SFJ2WG1tM3VTUFlXMW8xWG8yMnpmMjZQTUFOdUk3UThNYjYxN2o0MGVVYjFac2lWdlpOZV84T0dGanU2anNSWEI0MjNyNmJFNVF6SWhQd3g0VGU2c1NoeEd4YmRfRzhXZ0RzMDIyMks4bmFzZHRMRHlOclkydFVhdU5YRF9HSkZ0TTQ5c09jbUJrNG5oMWJ2XzB6UE0?oc=5" target="_blank" rel="noopener">Stock market today: Dow, S&P 500, Nasdaq drop as chip stocks tumble, Alphabet stock sinks - Yahoo Finance</a>
+              <span class="meta">— Google News Finanzen, 16.07.2026</span></li>
         
           <li><a href="https://www.cnbc.com/2026/07/17/softbank-chip-stocks-asia-wall-street-ai-rout.html" target="_blank" rel="noopener">SoftBank sinks over 9% as Asia chip stocks track Wall Street AI sell-off</a>
               <span class="meta">— CNBC Technology, 17.07.2026</span></li>
         
-          <li><a href="https://www.cnbc.com/2026/07/16/alibaba-baidu-shares-jump-apple-ai-partnership-.html" target="_blank" rel="noopener">Alibaba and Baidu shares jump in Hong Kong on Apple AI partnership</a>
-              <span class="meta">— CNBC Technology, 16.07.2026</span></li>
+          <li><a href="https://www.marketwatch.com/story/irens-stock-surges-as-the-neocloud-lands-2-8-billion-worth-of-new-deals-831302c3?mod=mw_rss_topstories" target="_blank" rel="noopener">Iren’s stock surges as the neocloud lands $2.8 billion worth of new deals</a>
+              <span class="meta">— MarketWatch, 20.07.2026</span></li>
         
-          <li><a href="https://www.cnbc.com/2026/07/16/tsmc-second-quarter-profit-.html" target="_blank" rel="noopener">TSMC to invest additional $100 billion in Arizona after second-quarter profit soars 77%</a>
-              <span class="meta">— CNBC Technology, 16.07.2026</span></li>
-        
-          <li><a href="https://www.marketwatch.com/story/chip-stocks-enter-bear-market-territory-a-bofa-analyst-says-not-to-panic-4d34df17?mod=mw_rss_topstories" target="_blank" rel="noopener">Chip stocks enter bear-market territory. A BofA analyst says not to panic.</a>
-              <span class="meta">— MarketWatch, 17.07.2026</span></li>
+          <li><a href="https://finance.yahoo.com/technology/ai/articles/nebius-775-million-debt-deal-161015706.html" target="_blank" rel="noopener">Nebius’ $775 Million Debt Deal Changes Everything About Its AI Growth Story</a>
+              <span class="meta">— Yahoo Finance, 20.07.2026</span></li>
         
         </ul>
         <p class="meta" style="margin:.4rem 0 0">
           Diese Meldungen betreffen andere Firmen des Sektors. Sie stehen hier, weil es zu
-          AMD zu wenige eigene gibt — sie belegen die These nicht.
-        </p>
-      </details>
-      
-    </div>
-    
-  </article>
-  
-  <article class="take">
-    <div class="take-head">
-      <span class="dir bearish">BEARISH</span>
-      <span class="ticker">ASML</span>
-      <span class="tag">Überhitzt</span>
-      <span class="tag">Technologie</span>
-      <span class="tag">3-6 Monate</span>
-      <span class="conv" style="margin-left:auto">
-        <span class="meta">Konfidenz</span>
-        <span class="conv-track"><span class="conv-fill" style="width:72%"></span></span>
-        <span class="meta" style="font-variant-numeric:tabular-nums">0.72</span>
-      </span>
-    </div>
-
-    <h3>ASML Holding N.V. - New York Re: Der Kurs läuft dem Fundament davon</h3>
-    <p>ASML Holding N.V. - New York Re hat einen starken Aufwärtstrend, den die Bewertung nicht mehr deckt. Der Kurs steht +72 % auf Jahressicht und 16 % über der 200-Tage-Linie. Dem KGV von 30.2 steht ein Umsatzwachstum von +13.2 % gegenüber. Nach vergleichbaren Makro-Regimetagen lag die Drei-Monats-Rendite im Median 3.1 Prozentpunkte unter dem Normalfall (n=19). Das Makro-Umfeld ist derzeit: Goldilocks · Neutral.</p>
-
-    
-    <div class="numbers">
-      <span>Rendite 1 Monat (%): -2.62</span><span>Rendite 3 Monate (%): 16.36</span><span>KGV (nachlaufend): 55.64</span><span>KGV (erwartet): 30.24</span>
-    </div>
-    
-
-    <div class="counter"><b>Dagegen spricht:</b> Überbewertung ist kein Timing-Signal. Teure Werte können lange teuer bleiben, solange die Ergebnisse liefern.</div>
-
-    
-    <details class="falsify">
-      <summary>Woran die These scheitert</summary>
-      <ul><li>Die Quartalszahlen übertreffen die Erwartungen deutlich -- dann war die Bewertung gerechtfertigt und nicht überzogen.</li><li>Der Sektor-Rückenwind verstärkt sich, statt nachzulassen.</li><li>Der Kurs bricht nach oben aus, ohne dass sich das Fundament verschlechtert.</li></ul>
-    </details>
-    
-
-    
-    
-    <div class="sources">
-      
-      <details class="falsify">
-        <summary>Meldungen zu ASML (2)</summary>
-        <ul>
-        
-          <li><a href="https://www.cnbc.com/2026/07/17/us-china-ai-feud-asml-tightrope-sales-geopolitics.html" target="_blank" rel="noopener">U.S.-China AI feud sees ASML walk tightrope between sales and geopolitics</a>
-              <span class="meta">— CNBC Technology, 17.07.2026</span></li>
-        
-          <li><a href="https://www.cnbc.com/2026/07/15/stocks-making-the-biggest-moves-premarket-blk-pypl-asml.html" target="_blank" rel="noopener">Stocks making the biggest moves premarket: BlackRock, PayPal, ASML, Morgan Stanley & more</a>
-              <span class="meta">— CNBC Markets, 15.07.2026</span></li>
-        
-        </ul>
-      </details>
-      
-
-      
-      <details class="falsify">
-        <summary>Umfeld: Meldungen aus Technologie
-          (4) — nicht über ASML</summary>
-        <ul>
-        
-          <li><a href="https://www.cnbc.com/2026/07/17/softbank-chip-stocks-asia-wall-street-ai-rout.html" target="_blank" rel="noopener">SoftBank sinks over 9% as Asia chip stocks track Wall Street AI sell-off</a>
-              <span class="meta">— CNBC Technology, 17.07.2026</span></li>
-        
-          <li><a href="https://www.cnbc.com/2026/07/16/alibaba-baidu-shares-jump-apple-ai-partnership-.html" target="_blank" rel="noopener">Alibaba and Baidu shares jump in Hong Kong on Apple AI partnership</a>
-              <span class="meta">— CNBC Technology, 16.07.2026</span></li>
-        
-          <li><a href="https://www.cnbc.com/2026/07/16/tsmc-second-quarter-profit-.html" target="_blank" rel="noopener">TSMC to invest additional $100 billion in Arizona after second-quarter profit soars 77%</a>
-              <span class="meta">— CNBC Technology, 16.07.2026</span></li>
-        
-          <li><a href="https://www.marketwatch.com/story/chip-stocks-enter-bear-market-territory-a-bofa-analyst-says-not-to-panic-4d34df17?mod=mw_rss_topstories" target="_blank" rel="noopener">Chip stocks enter bear-market territory. A BofA analyst says not to panic.</a>
-              <span class="meta">— MarketWatch, 17.07.2026</span></li>
-        
-        </ul>
-        <p class="meta" style="margin:.4rem 0 0">
-          Diese Meldungen betreffen andere Firmen des Sektors. Sie stehen hier, weil es zu
-          ASML zu wenige eigene gibt — sie belegen die These nicht.
-        </p>
-      </details>
-      
-    </div>
-    
-  </article>
-  
-  <article class="take">
-    <div class="take-head">
-      <span class="dir bullish">BULLISH</span>
-      <span class="ticker">NFLX</span>
-      <span class="tag">Übersehen</span>
-      <span class="tag">Kommunikation & Medien</span>
-      <span class="tag">3-6 Monate</span>
-      <span class="conv" style="margin-left:auto">
-        <span class="meta">Konfidenz</span>
-        <span class="conv-track"><span class="conv-fill" style="width:65%"></span></span>
-        <span class="meta" style="font-variant-numeric:tabular-nums">0.65</span>
-      </span>
-    </div>
-
-    <h3>Netflix, Inc.: Der Kurs kommt zurück, das Fundament nicht</h3>
-    <p>Der Markt hat Netflix, Inc. abgestraft, während Bewertung, Qualität und Sektor-Umfeld intakt geblieben sind. Der Kurs liegt 40 % unter dem 52-Wochen-Hoch und hat -20.8 % in drei Monaten gemacht. Dem KGV von 18.1 steht ein Umsatzwachstum von +13.4 % gegenüber. Nach vergleichbaren Makro-Regimetagen lag die Drei-Monats-Rendite im Median 2.0 Prozentpunkte über dem Normalfall (n=19). Das Makro-Umfeld ist derzeit: Goldilocks · Neutral.</p>
-
-    
-    <div class="numbers">
-      <span>Rendite 1 Monat (%): -6.58</span><span>Rendite 3 Monate (%): -20.77</span><span>KGV (nachlaufend): 21.68</span><span>KGV (erwartet): 18.05</span>
-    </div>
-    
-
-    <div class="counter"><b>Dagegen spricht:</b> Ein fallender Kurs ist selten grundlos. Der Markt könnte eine Verschlechterung einpreisen, die in den Quartalszahlen noch nicht sichtbar ist.</div>
-
-    
-    <details class="falsify">
-      <summary>Woran die These scheitert</summary>
-      <ul><li>Der Kurs fällt weiter, ohne dass sich die Bewertung verbessert -- dann war die Bewertung nie der Grund für den Rückgang.</li><li>Die nächsten Quartalszahlen zeigen sinkende Margen oder fallendes Umsatzwachstum.</li><li>Das Makro-Regime kippt in eine Richtung, die dem Sektor strukturell schadet.</li></ul>
-    </details>
-    
-
-    
-    
-    <div class="sources">
-      
-      <details class="falsify">
-        <summary>Meldungen zu NFLX (3)</summary>
-        <ul>
-        
-          <li><a href="https://www.cnbc.com/2026/07/17/stocks-making-the-biggest-moves-midday-trv-spcx-googl-nflx-snps.html" target="_blank" rel="noopener">Stocks making the biggest moves midday: Travelers, SpaceX, Alphabet, Netflix, Synopsys & more</a>
-              <span class="meta">— CNBC Markets, 17.07.2026</span></li>
-        
-          <li><a href="https://www.cnbc.com/2026/07/17/5-things-to-know-before-the-stock-market-opens.html" target="_blank" rel="noopener">Chip stock sell-off, Netflix earnings, Trump's approval rating and more in Morning Squawk</a>
-              <span class="meta">— CNBC Technology, 17.07.2026</span></li>
-        
-          <li><a href="https://www.cnbc.com/2026/07/17/stocks-making-the-biggest-moves-premarket-nflx-spcx-googl-and-more.html" target="_blank" rel="noopener">Stocks making the biggest moves premarket: Netflix, SpaceX, Alphabet and more</a>
-              <span class="meta">— CNBC Markets, 17.07.2026</span></li>
-        
-        </ul>
-      </details>
-      
-
-      
-    </div>
-    
-  </article>
-  
-  <article class="take">
-    <div class="take-head">
-      <span class="dir bullish">BULLISH</span>
-      <span class="ticker">CEG</span>
-      <span class="tag">Übersehen</span>
-      <span class="tag">Versorger</span>
-      <span class="tag">3-6 Monate</span>
-      <span class="conv" style="margin-left:auto">
-        <span class="meta">Konfidenz</span>
-        <span class="conv-track"><span class="conv-fill" style="width:63%"></span></span>
-        <span class="meta" style="font-variant-numeric:tabular-nums">0.63</span>
-      </span>
-    </div>
-
-    <h3>Constellation Energy Corporatio: Der Kurs kommt zurück, das Fundament nicht</h3>
-    <p>Der Markt hat Constellation Energy Corporatio abgestraft, während Bewertung, Qualität und Sektor-Umfeld intakt geblieben sind. Der Kurs liegt 33 % unter dem 52-Wochen-Hoch und hat -5.5 % in drei Monaten gemacht. Dem KGV von 18.6 steht ein Umsatzwachstum von +63.8 % gegenüber. Nach vergleichbaren Makro-Regimetagen lag die Drei-Monats-Rendite im Median 0.7 Prozentpunkte über dem Normalfall (n=19). Das Makro-Umfeld ist derzeit: Goldilocks · Neutral.</p>
-
-    
-    <div class="numbers">
-      <span>Rendite 1 Monat (%): -4.4</span><span>Rendite 3 Monate (%): -5.54</span><span>KGV (nachlaufend): 21.93</span><span>KGV (erwartet): 18.58</span>
-    </div>
-    
-
-    <div class="counter"><b>Dagegen spricht:</b> Ein fallender Kurs ist selten grundlos. Der Markt könnte eine Verschlechterung einpreisen, die in den Quartalszahlen noch nicht sichtbar ist.</div>
-
-    
-    <details class="falsify">
-      <summary>Woran die These scheitert</summary>
-      <ul><li>Der Kurs fällt weiter, ohne dass sich die Bewertung verbessert -- dann war die Bewertung nie der Grund für den Rückgang.</li><li>Die nächsten Quartalszahlen zeigen sinkende Margen oder fallendes Umsatzwachstum.</li><li>Das Makro-Regime kippt in eine Richtung, die dem Sektor strukturell schadet.</li></ul>
-    </details>
-    
-
-    
-    
-    <div class="sources">
-      
-
-      
-      <details class="falsify">
-        <summary>Umfeld: Meldungen aus Versorger
-          (4) — nicht über CEG</summary>
-        <ul>
-        
-          <li><a href="https://www.cnbc.com/2026/07/17/softbank-chip-stocks-asia-wall-street-ai-rout.html" target="_blank" rel="noopener">SoftBank sinks over 9% as Asia chip stocks track Wall Street AI sell-off</a>
-              <span class="meta">— CNBC Technology, 17.07.2026</span></li>
-        
-          <li><a href="https://www.cnbc.com/2026/07/16/alibaba-baidu-shares-jump-apple-ai-partnership-.html" target="_blank" rel="noopener">Alibaba and Baidu shares jump in Hong Kong on Apple AI partnership</a>
-              <span class="meta">— CNBC Technology, 16.07.2026</span></li>
-        
-          <li><a href="https://www.cnbc.com/2026/07/17/x-china-ai-summit-risks-security.html" target="_blank" rel="noopener">Xi pitches China as AI partner to developing world, warns against risks and security overreach</a>
-              <span class="meta">— CNBC Technology, 17.07.2026</span></li>
-        
-          <li><a href="https://finance.yahoo.com/technology/ai/articles/tsmc-posts-record-q2-profit-104626669.html" target="_blank" rel="noopener">TSMC posts record Q2 profit as AI demand drives higher revenue and investment outlook (TSM)</a>
-              <span class="meta">— Yahoo Finance, 16.07.2026</span></li>
-        
-        </ul>
-        <p class="meta" style="margin:.4rem 0 0">
-          Diese Meldungen betreffen andere Firmen des Sektors. Sie stehen hier, weil es zu
-          CEG zu wenige eigene gibt — sie belegen die These nicht.
-        </p>
-      </details>
-      
-    </div>
-    
-  </article>
-  
-  <article class="take">
-    <div class="take-head">
-      <span class="dir bullish">BULLISH</span>
-      <span class="ticker">ADBE</span>
-      <span class="tag">Übersehen</span>
-      <span class="tag">Technologie</span>
-      <span class="tag">3-6 Monate</span>
-      <span class="conv" style="margin-left:auto">
-        <span class="meta">Konfidenz</span>
-        <span class="conv-track"><span class="conv-fill" style="width:63%"></span></span>
-        <span class="meta" style="font-variant-numeric:tabular-nums">0.63</span>
-      </span>
-    </div>
-
-    <h3>Adobe Inc.: Der Kurs kommt zurück, das Fundament nicht</h3>
-    <p>Der Markt hat Adobe Inc. abgestraft, während Bewertung, Qualität und Sektor-Umfeld intakt geblieben sind. Der Kurs liegt 34 % unter dem 52-Wochen-Hoch und hat -4.2 % in drei Monaten gemacht. Dem KGV von 8.6 steht ein Umsatzwachstum von +12.7 % gegenüber. Nach vergleichbaren Makro-Regimetagen lag die Drei-Monats-Rendite im Median 4.5 Prozentpunkte über dem Normalfall (n=19). Das Makro-Umfeld ist derzeit: Goldilocks · Neutral.</p>
-
-    
-    <div class="numbers">
-      <span>Rendite 1 Monat (%): 17.03</span><span>Rendite 3 Monate (%): -4.18</span><span>KGV (nachlaufend): 13.57</span><span>KGV (erwartet): 8.62</span>
-    </div>
-    
-
-    <div class="counter"><b>Dagegen spricht:</b> Ein fallender Kurs ist selten grundlos. Der Markt könnte eine Verschlechterung einpreisen, die in den Quartalszahlen noch nicht sichtbar ist.</div>
-
-    
-    <details class="falsify">
-      <summary>Woran die These scheitert</summary>
-      <ul><li>Der Kurs fällt weiter, ohne dass sich die Bewertung verbessert -- dann war die Bewertung nie der Grund für den Rückgang.</li><li>Die nächsten Quartalszahlen zeigen sinkende Margen oder fallendes Umsatzwachstum.</li><li>Das Makro-Regime kippt in eine Richtung, die dem Sektor strukturell schadet.</li></ul>
-    </details>
-    
-
-    
-    
-    <div class="sources">
-      
-
-      
-      <details class="falsify">
-        <summary>Umfeld: Meldungen aus Technologie
-          (4) — nicht über ADBE</summary>
-        <ul>
-        
-          <li><a href="https://www.cnbc.com/2026/07/17/softbank-chip-stocks-asia-wall-street-ai-rout.html" target="_blank" rel="noopener">SoftBank sinks over 9% as Asia chip stocks track Wall Street AI sell-off</a>
-              <span class="meta">— CNBC Technology, 17.07.2026</span></li>
-        
-          <li><a href="https://www.cnbc.com/2026/07/16/alibaba-baidu-shares-jump-apple-ai-partnership-.html" target="_blank" rel="noopener">Alibaba and Baidu shares jump in Hong Kong on Apple AI partnership</a>
-              <span class="meta">— CNBC Technology, 16.07.2026</span></li>
-        
-          <li><a href="https://www.cnbc.com/2026/07/16/tsmc-second-quarter-profit-.html" target="_blank" rel="noopener">TSMC to invest additional $100 billion in Arizona after second-quarter profit soars 77%</a>
-              <span class="meta">— CNBC Technology, 16.07.2026</span></li>
-        
-          <li><a href="https://www.marketwatch.com/story/chip-stocks-enter-bear-market-territory-a-bofa-analyst-says-not-to-panic-4d34df17?mod=mw_rss_topstories" target="_blank" rel="noopener">Chip stocks enter bear-market territory. A BofA analyst says not to panic.</a>
-              <span class="meta">— MarketWatch, 17.07.2026</span></li>
-        
-        </ul>
-        <p class="meta" style="margin:.4rem 0 0">
-          Diese Meldungen betreffen andere Firmen des Sektors. Sie stehen hier, weil es zu
-          ADBE zu wenige eigene gibt — sie belegen die These nicht.
-        </p>
-      </details>
-      
-    </div>
-    
-  </article>
-  
-  <article class="take">
-    <div class="take-head">
-      <span class="dir bearish">BEARISH</span>
-      <span class="ticker">UNH</span>
-      <span class="tag">Überhitzt</span>
-      <span class="tag">Gesundheit & Pharma</span>
-      <span class="tag">3-6 Monate</span>
-      <span class="conv" style="margin-left:auto">
-        <span class="meta">Konfidenz</span>
-        <span class="conv-track"><span class="conv-fill" style="width:62%"></span></span>
-        <span class="meta" style="font-variant-numeric:tabular-nums">0.62</span>
-      </span>
-    </div>
-
-    <h3>UnitedHealth Group Incorporated: Der Kurs läuft dem Fundament davon</h3>
-    <p>UnitedHealth Group Incorporated hat einen starken Aufwärtstrend, den die Bewertung nicht mehr deckt. Der Kurs steht +34 % auf Jahressicht und 25 % über der 200-Tage-Linie. Dem KGV von 19.4 steht ein Umsatzwachstum von +2.0 % gegenüber. Nach vergleichbaren Makro-Regimetagen lag die Drei-Monats-Rendite im Median 0.1 Prozentpunkte unter dem Normalfall (n=19). Das Makro-Umfeld ist derzeit: Goldilocks · Neutral.</p>
-
-    
-    <div class="numbers">
-      <span>Rendite 1 Monat (%): -0.42</span><span>Rendite 3 Monate (%): 8.8</span><span>KGV (nachlaufend): 32.06</span><span>KGV (erwartet): 19.38</span>
-    </div>
-    
-
-    <div class="counter"><b>Dagegen spricht:</b> Überbewertung ist kein Timing-Signal. Teure Werte können lange teuer bleiben, solange die Ergebnisse liefern.</div>
-
-    
-    <details class="falsify">
-      <summary>Woran die These scheitert</summary>
-      <ul><li>Die Quartalszahlen übertreffen die Erwartungen deutlich -- dann war die Bewertung gerechtfertigt und nicht überzogen.</li><li>Der Sektor-Rückenwind verstärkt sich, statt nachzulassen.</li><li>Der Kurs bricht nach oben aus, ohne dass sich das Fundament verschlechtert.</li></ul>
-    </details>
-    
-
-    
-    
-    <div class="sources">
-      
-      <details class="falsify">
-        <summary>Meldungen zu UNH (2)</summary>
-        <ul>
-        
-          <li><a href="https://www.cnbc.com/2026/07/16/stocks-making-the-biggest-moves-midday-man-abt-unh-tsm-more.html" target="_blank" rel="noopener">Stocks making the biggest moves midday: Manpower, Abbott, UnitedHealth, TSMC & more</a>
-              <span class="meta">— CNBC Markets, 16.07.2026</span></li>
-        
-          <li><a href="https://www.cnbc.com/2026/07/16/stocks-making-the-biggest-moves-premarket-.html" target="_blank" rel="noopener">Stocks making the biggest moves premarket: UnitedHealth, TSMC, GE Aerospace, J.B. Hunt & more</a>
-              <span class="meta">— CNBC Markets, 16.07.2026</span></li>
-        
-        </ul>
-      </details>
-      
-
-      
-      <details class="falsify">
-        <summary>Umfeld: Meldungen aus Gesundheit & Pharma
-          (2) — nicht über UNH</summary>
-        <ul>
-        
-          <li><a href="https://finance.yahoo.com/healthcare/articles/ataibeckley-surges-report-lilly-poised-103552085.html" target="_blank" rel="noopener">AtaiBeckley surges after report Lilly poised to buy psychedelic drug developer</a>
-              <span class="meta">— Yahoo Finance, 16.07.2026</span></li>
-        
-          <li><a href="https://finance.yahoo.com/healthcare/articles/lilly-enters-psychedelic-drug-race-105046700.html" target="_blank" rel="noopener">Lilly enters psychedelic drug race with up to $3.8 billion AtaiBeckley deal</a>
-              <span class="meta">— Yahoo Finance, 16.07.2026</span></li>
-        
-        </ul>
-        <p class="meta" style="margin:.4rem 0 0">
-          Diese Meldungen betreffen andere Firmen des Sektors. Sie stehen hier, weil es zu
-          UNH zu wenige eigene gibt — sie belegen die These nicht.
-        </p>
-      </details>
-      
-    </div>
-    
-  </article>
-  
-  <article class="take">
-    <div class="take-head">
-      <span class="dir bullish">BULLISH</span>
-      <span class="ticker">NEM</span>
-      <span class="tag">Übersehen</span>
-      <span class="tag">Rohstoffe & Chemie</span>
-      <span class="tag">3-6 Monate</span>
-      <span class="conv" style="margin-left:auto">
-        <span class="meta">Konfidenz</span>
-        <span class="conv-track"><span class="conv-fill" style="width:52%"></span></span>
-        <span class="meta" style="font-variant-numeric:tabular-nums">0.52</span>
-      </span>
-    </div>
-
-    <h3>Newmont Corporation: Der Kurs kommt zurück, das Fundament nicht</h3>
-    <p>Der Markt hat Newmont Corporation abgestraft, während Bewertung, Qualität und Sektor-Umfeld intakt geblieben sind. Der Kurs liegt 32 % unter dem 52-Wochen-Hoch und hat -17.6 % in drei Monaten gemacht. Dem KGV von 8.4 steht ein Umsatzwachstum von +45.8 % gegenüber. Nach vergleichbaren Makro-Regimetagen lag die Drei-Monats-Rendite im Median 4.5 Prozentpunkte unter dem Normalfall (n=19). Das Makro-Umfeld ist derzeit: Goldilocks · Neutral.</p>
-
-    
-    <div class="numbers">
-      <span>Rendite 1 Monat (%): -6.69</span><span>Rendite 3 Monate (%): -17.56</span><span>KGV (nachlaufend): 11.63</span><span>KGV (erwartet): 8.36</span>
-    </div>
-    
-
-    <div class="counter"><b>Dagegen spricht:</b> Ein fallender Kurs ist selten grundlos. Der Markt könnte eine Verschlechterung einpreisen, die in den Quartalszahlen noch nicht sichtbar ist.</div>
-
-    
-    <details class="falsify">
-      <summary>Woran die These scheitert</summary>
-      <ul><li>Der Kurs fällt weiter, ohne dass sich die Bewertung verbessert -- dann war die Bewertung nie der Grund für den Rückgang.</li><li>Die nächsten Quartalszahlen zeigen sinkende Margen oder fallendes Umsatzwachstum.</li><li>Das Makro-Regime kippt in eine Richtung, die dem Sektor strukturell schadet.</li></ul>
-    </details>
-    
-
-    
-    
-    <div class="sources">
-      
-
-      
-      <details class="falsify">
-        <summary>Umfeld: Meldungen aus Rohstoffe & Chemie
-          (2) — nicht über NEM</summary>
-        <ul>
-        
-          <li><a href="https://www.investing.com/news/economy-news/brazil-finance-minister-says-no-retaliation-planned-for-us-tariffs-93CH-4798978" target="_blank" rel="noopener">Brazil finance minister says no retaliation planned for US tariffs</a>
-              <span class="meta">— Investing.com Wirtschaft, 17.07.2026</span></li>
-        
-          <li><a href="https://www.investing.com/news/economy-news/brazil-finance-chief-pledges-reciprocity-not-retaliation-after-new-us-tariffs-4798817" target="_blank" rel="noopener">Brazil finance chief pledges reciprocity, not retaliation, after new U.S. tariffs</a>
-              <span class="meta">— Investing.com Wirtschaft, 17.07.2026</span></li>
-        
-        </ul>
-        <p class="meta" style="margin:.4rem 0 0">
-          Diese Meldungen betreffen andere Firmen des Sektors. Sie stehen hier, weil es zu
-          NEM zu wenige eigene gibt — sie belegen die These nicht.
+          INTC zu wenige eigene gibt — sie belegen die These nicht.
         </p>
       </details>
       
@@ -1006,144 +989,144 @@
       
         <tr>
           <td class="name">Gesundheit & Pharma</td>
-          <td class="num-pos">+10.8 %</td>
+          <td class="num-pos">+9.3 %</td>
           <td>80%</td>
-          <td class="num-neg">-0.03</td>
-          <td class="num-pos">+1.0</td>
-          <td class="meta">19</td>
+          <td class="num-neg">-0.04</td>
+          <td class="num-pos">+3.1</td>
+          <td class="meta">20</td>
           <td>gemischt
-              <span class="meta">(4)</span></td>
-          <td class="barcell"><span class="dbar"><i class="p" style="width:22.7%"></i></span></td>
-          <td></td>
-        </tr>
-      
-        <tr>
-          <td class="name">Rohstoffe & Chemie</td>
-          <td class="num-pos">+0.2 %</td>
-          <td>43%</td>
-          <td class="num-pos">+0.08</td>
-          <td class="num-pos">+0.8</td>
-          <td class="meta">19</td>
-          <td>negativ
-              <span class="meta">(0)</span></td>
-          <td class="barcell"><span class="dbar"><i class="p" style="width:13.5%"></i></span></td>
+              <span class="meta">(5)</span></td>
+          <td class="barcell"><span class="dbar"><i class="p" style="width:31.0%"></i></span></td>
           <td></td>
         </tr>
       
         <tr>
           <td class="name">Finanzen & Banken</td>
-          <td class="num-pos">+9.8 %</td>
+          <td class="num-pos">+7.8 %</td>
           <td>100%</td>
-          <td class="num-pos">+0.18</td>
-          <td class="num-neg">-1.2</td>
-          <td class="meta">19</td>
+          <td class="num-pos">+0.20</td>
+          <td class="num-neg">-0.5</td>
+          <td class="meta">20</td>
           <td>gemischt
-              <span class="meta">(9)</span></td>
-          <td class="barcell"><span class="dbar"><i class="p" style="width:13.4%"></i></span></td>
-          <td></td>
-        </tr>
-      
-        <tr>
-          <td class="name">Immobilien</td>
-          <td class="num-pos">+5.3 %</td>
-          <td>60%</td>
-          <td class="num-neg">-0.15</td>
-          <td class="num-pos">+0.6</td>
-          <td class="meta">10</td>
-          <td>gemischt
-              <span class="meta">(3)</span></td>
-          <td class="barcell"><span class="dbar"><i class="p" style="width:5.8%"></i></span></td>
+              <span class="meta">(27)</span></td>
+          <td class="barcell"><span class="dbar"><i class="p" style="width:15.5%"></i></span></td>
           <td></td>
         </tr>
       
         <tr>
           <td class="name">Industrie & Transport</td>
-          <td class="num-pos">+4.3 %</td>
+          <td class="num-pos">+3.9 %</td>
           <td>73%</td>
-          <td class="num-pos">+0.05</td>
-          <td class="num-neg">-1.2</td>
-          <td class="meta">19</td>
-          <td>gemischt
-              <span class="meta">(2)</span></td>
-          <td class="barcell"><span class="dbar"><i class="p" style="width:3.6%"></i></span></td>
-          <td></td>
-        </tr>
-      
-        <tr>
-          <td class="name">Technologie</td>
-          <td class="num-neg">-0.9 %</td>
-          <td>62%</td>
-          <td class="num-neg">-0.05</td>
+          <td class="num-pos">+0.02</td>
           <td class="num-neg">-1.0</td>
-          <td class="meta">19</td>
-          <td>umstritten
-              <span class="meta">(36)</span></td>
-          <td class="barcell"><span class="dbar"><i class="n" style="width:3.7%"></i></span></td>
-          <td></td>
-        </tr>
-      
-        <tr>
-          <td class="name">Basiskonsum</td>
-          <td class="num-pos">+0.7 %</td>
-          <td>62%</td>
-          <td class="num-neg">-0.06</td>
-          <td class="num-neg">-1.0</td>
-          <td class="meta">19</td>
+          <td class="meta">20</td>
           <td>gemischt
-              <span class="meta">(2)</span></td>
-          <td class="barcell"><span class="dbar"><i class="n" style="width:9.2%"></i></span></td>
-          <td></td>
-        </tr>
-      
-        <tr>
-          <td class="name">Versorger</td>
-          <td class="num-pos">+3.0 %</td>
-          <td>67%</td>
-          <td class="num-neg">-0.19</td>
-          <td class="num-pos">+0.6</td>
-          <td class="meta">19</td>
-          <td>gemischt
-              <span class="meta">(0)</span></td>
-          <td class="barcell"><span class="dbar"><i class="n" style="width:10.7%"></i></span></td>
-          <td><span class="tag cold">übersehen</span></td>
-        </tr>
-      
-        <tr>
-          <td class="name">Energie & Öl</td>
-          <td class="num-neg">-2.9 %</td>
-          <td>75%</td>
-          <td class="num-pos">+0.09</td>
-          <td class="num-neg">-2.7</td>
-          <td class="meta">19</td>
-          <td>positiv
-              <span class="meta">(3)</span></td>
-          <td class="barcell"><span class="dbar"><i class="n" style="width:12.6%"></i></span></td>
+              <span class="meta">(6)</span></td>
+          <td class="barcell"><span class="dbar"><i class="p" style="width:5.1%"></i></span></td>
           <td><span class="tag hot">überhitzt</span></td>
         </tr>
       
         <tr>
-          <td class="name">Kommunikation & Medien</td>
-          <td class="num-neg">-5.1 %</td>
-          <td>33%</td>
-          <td class="num-neg">-0.02</td>
-          <td class="">–</td>
-          <td class="meta">0</td>
+          <td class="name">Technologie</td>
+          <td class="num-pos">+0.9 %</td>
+          <td>62%</td>
+          <td class="num-neg">-0.05</td>
+          <td class="num-neg">-1.3</td>
+          <td class="meta">20</td>
           <td>umstritten
-              <span class="meta">(8)</span></td>
-          <td class="barcell"><span class="dbar"><i class="n" style="width:37.5%"></i></span></td>
+              <span class="meta">(60)</span></td>
+          <td class="barcell"><span class="dbar"><i class="p" style="width:1.4%"></i></span></td>
+          <td><span class="tag hot">überhitzt</span></td>
+        </tr>
+      
+        <tr>
+          <td class="name">Basiskonsum</td>
+          <td class="num-neg">-1.8 %</td>
+          <td>62%</td>
+          <td class="num-neg">-0.05</td>
+          <td class="num-pos">+1.3</td>
+          <td class="meta">20</td>
+          <td>gemischt
+              <span class="meta">(2)</span></td>
+          <td class="barcell"><span class="dbar"><i class="n" style="width:2.7%"></i></span></td>
           <td><span class="tag cold">übersehen</span></td>
         </tr>
       
         <tr>
-          <td class="name">Zyklischer Konsum</td>
-          <td class="num-neg">-1.4 %</td>
-          <td>33%</td>
-          <td class="num-neg">-0.02</td>
-          <td class="num-neg">-0.7</td>
-          <td class="meta">19</td>
-          <td>negativ
+          <td class="name">Immobilien</td>
+          <td class="num-pos">+2.9 %</td>
+          <td>67%</td>
+          <td class="num-neg">-0.16</td>
+          <td class="num-neg">-2.3</td>
+          <td class="meta">11</td>
+          <td>gemischt
+              <span class="meta">(6)</span></td>
+          <td class="barcell"><span class="dbar"><i class="n" style="width:8.2%"></i></span></td>
+          <td></td>
+        </tr>
+      
+        <tr>
+          <td class="name">Rohstoffe & Chemie</td>
+          <td class="num-neg">-0.9 %</td>
+          <td>38%</td>
+          <td class="num-neg">-0.00</td>
+          <td class="num-neg">-1.5</td>
+          <td class="meta">20</td>
+          <td>gemischt
               <span class="meta">(5)</span></td>
-          <td class="barcell"><span class="dbar"><i class="n" style="width:38.4%"></i></span></td>
+          <td class="barcell"><span class="dbar"><i class="n" style="width:8.5%"></i></span></td>
+          <td></td>
+        </tr>
+      
+        <tr>
+          <td class="name">Energie & Öl</td>
+          <td class="num-neg">-4.5 %</td>
+          <td>75%</td>
+          <td class="num-pos">+0.02</td>
+          <td class="num-neg">-3.4</td>
+          <td class="meta">20</td>
+          <td>gemischt
+              <span class="meta">(16)</span></td>
+          <td class="barcell"><span class="dbar"><i class="n" style="width:9.0%"></i></span></td>
+          <td><span class="tag hot">überhitzt</span></td>
+        </tr>
+      
+        <tr>
+          <td class="name">Versorger</td>
+          <td class="num-pos">+1.8 %</td>
+          <td>50%</td>
+          <td class="num-neg">-0.21</td>
+          <td class="num-pos">+3.0</td>
+          <td class="meta">20</td>
+          <td>gemischt
+              <span class="meta">(1)</span></td>
+          <td class="barcell"><span class="dbar"><i class="n" style="width:13.4%"></i></span></td>
+          <td></td>
+        </tr>
+      
+        <tr>
+          <td class="name">Zyklischer Konsum</td>
+          <td class="num-neg">-1.9 %</td>
+          <td>40%</td>
+          <td class="num-neg">-0.00</td>
+          <td class="num-neg">-1.2</td>
+          <td class="meta">20</td>
+          <td>gemischt
+              <span class="meta">(8)</span></td>
+          <td class="barcell"><span class="dbar"><i class="n" style="width:34.2%"></i></span></td>
+          <td></td>
+        </tr>
+      
+        <tr>
+          <td class="name">Kommunikation & Medien</td>
+          <td class="num-neg">-5.7 %</td>
+          <td>50%</td>
+          <td class="num-neg">-0.02</td>
+          <td class="">–</td>
+          <td class="meta">0</td>
+          <td>gemischt
+              <span class="meta">(15)</span></td>
+          <td class="barcell"><span class="dbar"><i class="n" style="width:34.6%"></i></span></td>
           <td></td>
         </tr>
       
@@ -1177,35 +1160,35 @@
         <tr>
           <td class="name">SMI Schweiz</td>
           <td class="meta" style="text-align:left">Europa</td>
-          <td class="num-pos">+1.2 %</td>
-          <td class="num-pos">+8.5 %</td>
-          <td class="num-pos">+16.6 %</td>
-          <td class="num-pos">+6.9 %</td>
-          <td class="num-neg">-0.6 %</td>
-          <td class="barcell"><span class="dbar"><i class="n" style="width:1.6%"></i></span></td>
-          <td class="num-neg">-0.1</td>
-        </tr>
-      
-        <tr>
-          <td class="name">Euro Stoxx 50</td>
-          <td class="meta" style="text-align:left">Europa</td>
-          <td class="num-pos">+0.1 %</td>
-          <td class="num-pos">+6.9 %</td>
-          <td class="num-pos">+11.9 %</td>
-          <td class="num-pos">+4.2 %</td>
-          <td class="num-neg">-2.8 %</td>
-          <td class="barcell"><span class="dbar"><i class="n" style="width:18.9%"></i></span></td>
-          <td class="num-neg">-1.5</td>
+          <td class="num-pos">+0.2 %</td>
+          <td class="num-pos">+7.7 %</td>
+          <td class="num-pos">+14.4 %</td>
+          <td class="num-pos">+6.2 %</td>
+          <td class="num-neg">-1.2 %</td>
+          <td class="barcell"><span class="dbar"><i class="p" style="width:5.1%"></i></span></td>
+          <td class="num-pos">+0.4</td>
         </tr>
       
         <tr>
           <td class="name">Russell 2000</td>
           <td class="meta" style="text-align:left">USA</td>
-          <td class="num-neg">-1.6 %</td>
-          <td class="num-pos">+6.0 %</td>
-          <td class="num-pos">+21.8 %</td>
-          <td class="num-pos">+8.3 %</td>
-          <td class="num-neg">-2.1 %</td>
+          <td class="num-neg">-1.7 %</td>
+          <td class="num-pos">+6.6 %</td>
+          <td class="num-pos">+20.5 %</td>
+          <td class="num-pos">+8.0 %</td>
+          <td class="num-neg">-2.2 %</td>
+          <td class="barcell"><span class="dbar"><i class="n" style="width:19.2%"></i></span></td>
+          <td class="num-neg">-1.5</td>
+        </tr>
+      
+        <tr>
+          <td class="name">Euro Stoxx 50</td>
+          <td class="meta" style="text-align:left">Europa</td>
+          <td class="num-neg">-0.1 %</td>
+          <td class="num-pos">+6.5 %</td>
+          <td class="num-pos">+9.9 %</td>
+          <td class="num-pos">+4.1 %</td>
+          <td class="num-neg">-2.9 %</td>
           <td class="barcell"><span class="dbar"><i class="n" style="width:12.5%"></i></span></td>
           <td class="num-neg">-1.0</td>
         </tr>
@@ -1213,97 +1196,109 @@
         <tr>
           <td class="name">Dow Jones</td>
           <td class="meta" style="text-align:left">USA</td>
-          <td class="num-pos">+0.5 %</td>
-          <td class="num-pos">+5.3 %</td>
-          <td class="num-pos">+11.0 %</td>
-          <td class="num-pos">+5.4 %</td>
-          <td class="num-neg">-1.7 %</td>
-          <td class="barcell"><span class="dbar"><i class="n" style="width:7.7%"></i></span></td>
-          <td class="num-neg">-0.6</td>
+          <td class="num-neg">-0.2 %</td>
+          <td class="num-pos">+4.8 %</td>
+          <td class="num-pos">+9.9 %</td>
+          <td class="num-pos">+5.2 %</td>
+          <td class="num-neg">-1.9 %</td>
+          <td class="barcell"><span class="dbar"><i class="n" style="width:27.0%"></i></span></td>
+          <td class="num-neg">-2.2</td>
         </tr>
       
         <tr>
           <td class="name">CAC 40</td>
           <td class="meta" style="text-align:left">Europa</td>
-          <td class="num-neg">-0.5 %</td>
-          <td class="num-pos">+4.9 %</td>
-          <td class="num-pos">+4.9 %</td>
+          <td class="num-neg">-0.3 %</td>
+          <td class="num-pos">+4.4 %</td>
+          <td class="num-pos">+3.5 %</td>
           <td class="num-pos">+1.7 %</td>
           <td class="num-neg">-3.3 %</td>
-          <td class="barcell"><span class="dbar"><i class="n" style="width:34.0%"></i></span></td>
-          <td class="num-neg">-2.7</td>
+          <td class="barcell"><span class="dbar"><i class="n" style="width:17.2%"></i></span></td>
+          <td class="num-neg">-1.4</td>
         </tr>
       
         <tr>
-          <td class="name">TSX Kanada</td>
-          <td class="meta" style="text-align:left">Amerika</td>
-          <td class="num-pos">+0.8 %</td>
-          <td class="num-pos">+4.2 %</td>
-          <td class="num-pos">+17.9 %</td>
-          <td class="num-pos">+4.7 %</td>
-          <td class="num-neg">-0.4 %</td>
-          <td class="barcell"><span class="dbar"><i class="n" style="width:12.4%"></i></span></td>
-          <td class="num-neg">-1.0</td>
-        </tr>
-      
-        <tr>
-          <td class="name">FTSE 100</td>
-          <td class="meta" style="text-align:left">Europa</td>
-          <td class="num-pos">+0.9 %</td>
-          <td class="num-pos">+4.0 %</td>
-          <td class="num-pos">+9.5 %</td>
-          <td class="num-pos">+2.2 %</td>
-          <td class="num-neg">-2.8 %</td>
-          <td class="barcell"><span class="dbar"><i class="n" style="width:8.8%"></i></span></td>
-          <td class="num-neg">-0.7</td>
+          <td class="name">Sensex Indien</td>
+          <td class="meta" style="text-align:left">Asien</td>
+          <td class="num-pos">+1.3 %</td>
+          <td class="num-pos">+3.2 %</td>
+          <td class="num-neg">-7.0 %</td>
+          <td class="num-neg">-0.8 %</td>
+          <td class="num-neg">-9.4 %</td>
+          <td class="barcell"><span class="dbar"><i class="p" style="width:19.0%"></i></span></td>
+          <td class="num-pos">+1.5</td>
         </tr>
       
         <tr>
           <td class="name">DAX</td>
           <td class="meta" style="text-align:left">Europa</td>
-          <td class="num-pos">+0.6 %</td>
+          <td class="num-pos">+0.9 %</td>
+          <td class="num-pos">+2.2 %</td>
           <td class="num-pos">+3.7 %</td>
-          <td class="num-pos">+5.4 %</td>
           <td class="num-pos">+1.4 %</td>
           <td class="num-neg">-3.8 %</td>
-          <td class="barcell"><span class="dbar"><i class="n" style="width:13.7%"></i></span></td>
-          <td class="num-neg">-1.1</td>
+          <td class="barcell"><span class="dbar"><i class="n" style="width:6.4%"></i></span></td>
+          <td class="num-neg">-0.5</td>
         </tr>
       
         <tr>
-          <td class="name">S&P 500</td>
-          <td class="meta" style="text-align:left">USA</td>
+          <td class="name">FTSE 100</td>
+          <td class="meta" style="text-align:left">Europa</td>
+          <td class="num-pos">+0.4 %</td>
+          <td class="num-pos">+1.9 %</td>
+          <td class="num-pos">+7.5 %</td>
           <td class="num-pos">+1.4 %</td>
-          <td class="num-pos">+0.7 %</td>
-          <td class="num-pos">+10.8 %</td>
-          <td class="num-pos">+5.3 %</td>
-          <td class="num-neg">-2.0 %</td>
+          <td class="num-neg">-3.5 %</td>
           <td class="barcell"><span class="dbar"><i class="n" style="width:11.3%"></i></span></td>
           <td class="num-neg">-0.9</td>
         </tr>
       
         <tr>
+          <td class="name">S&P 500</td>
+          <td class="meta" style="text-align:left">USA</td>
+          <td class="num-pos">+0.7 %</td>
+          <td class="num-pos">+1.2 %</td>
+          <td class="num-pos">+9.7 %</td>
+          <td class="num-pos">+5.7 %</td>
+          <td class="num-neg">-1.5 %</td>
+          <td class="barcell"><span class="dbar"><i class="n" style="width:14.9%"></i></span></td>
+          <td class="num-neg">-1.2</td>
+        </tr>
+      
+        <tr>
           <td class="name">Nasdaq 100</td>
           <td class="meta" style="text-align:left">USA</td>
-          <td class="num-neg">-1.8 %</td>
-          <td class="num-neg">-1.8 %</td>
-          <td class="num-pos">+14.1 %</td>
-          <td class="num-pos">+6.5 %</td>
-          <td class="num-neg">-6.7 %</td>
-          <td class="barcell"><span class="dbar"><i class="n" style="width:19.6%"></i></span></td>
-          <td class="num-neg">-1.6</td>
+          <td class="num-neg">-2.9 %</td>
+          <td class="num-neg">-0.2 %</td>
+          <td class="num-pos">+12.9 %</td>
+          <td class="num-pos">+7.5 %</td>
+          <td class="num-neg">-5.7 %</td>
+          <td class="barcell"><span class="dbar"><i class="n" style="width:8.9%"></i></span></td>
+          <td class="num-neg">-0.7</td>
         </tr>
       
         <tr>
           <td class="name">Bovespa Brasilien</td>
           <td class="meta" style="text-align:left">Schwellenländer</td>
-          <td class="num-pos">+0.2 %</td>
-          <td class="num-neg">-2.0 %</td>
-          <td class="num-pos">+12.8 %</td>
-          <td class="num-neg">-3.0 %</td>
-          <td class="num-neg">-12.6 %</td>
-          <td class="barcell"><span class="dbar"><i class="p" style="width:6.8%"></i></span></td>
-          <td class="num-pos">+0.5</td>
+          <td class="num-pos">+0.5 %</td>
+          <td class="num-neg">-1.6 %</td>
+          <td class="num-pos">+12.1 %</td>
+          <td class="num-neg">-2.9 %</td>
+          <td class="num-neg">-12.4 %</td>
+          <td class="barcell"><span class="dbar"><i class="n" style="width:11.9%"></i></span></td>
+          <td class="num-neg">-1.0</td>
+        </tr>
+      
+        <tr>
+          <td class="name">Nikkei 225</td>
+          <td class="meta" style="text-align:left">Asien</td>
+          <td class="">–</td>
+          <td class="">–</td>
+          <td class="">–</td>
+          <td class="">–</td>
+          <td class="num-neg">–</td>
+          <td class="barcell"><span class="dbar"><i class="n" style="width:15.8%"></i></span></td>
+          <td class="num-neg">-1.3</td>
         </tr>
       
         <tr>
@@ -1314,8 +1309,8 @@
           <td class="">–</td>
           <td class="">–</td>
           <td class="num-neg">–</td>
-          <td class="barcell"><span class="dbar"><i class="p" style="width:25.5%"></i></span></td>
-          <td class="num-pos">+2.0</td>
+          <td class="barcell"><span class="dbar"><i class="n" style="width:0.5%"></i></span></td>
+          <td class="num-neg">-0.0</td>
         </tr>
       
         <tr>
@@ -1326,8 +1321,8 @@
           <td class="">–</td>
           <td class="">–</td>
           <td class="num-neg">–</td>
-          <td class="barcell"><span class="dbar"><i class="n" style="width:9.3%"></i></span></td>
-          <td class="num-neg">-0.7</td>
+          <td class="barcell"><span class="dbar"><i class="n" style="width:32.4%"></i></span></td>
+          <td class="num-neg">-2.6</td>
         </tr>
       
         <tr>
@@ -1338,8 +1333,20 @@
           <td class="">–</td>
           <td class="">–</td>
           <td class="num-neg">–</td>
-          <td class="barcell"><span class="dbar"><i class="p" style="width:15.5%"></i></span></td>
-          <td class="num-pos">+1.2</td>
+          <td class="barcell"><span class="dbar"><i class="p" style="width:3.4%"></i></span></td>
+          <td class="num-pos">+0.3</td>
+        </tr>
+      
+        <tr>
+          <td class="name">TSX Kanada</td>
+          <td class="meta" style="text-align:left">Amerika</td>
+          <td class="num-pos">+1.1 %</td>
+          <td class="">–</td>
+          <td class="num-pos">+16.1 %</td>
+          <td class="num-pos">+4.4 %</td>
+          <td class="num-neg">-0.6 %</td>
+          <td class="barcell"><span class="dbar"><i class="n" style="width:13.6%"></i></span></td>
+          <td class="num-neg">-1.1</td>
         </tr>
       
         <tr>
@@ -1350,8 +1357,8 @@
           <td class="">–</td>
           <td class="">–</td>
           <td class="num-neg">–</td>
-          <td class="barcell"><span class="dbar"><i class="p" style="width:5.6%"></i></span></td>
-          <td class="num-pos">+0.5</td>
+          <td class="barcell"><span class="dbar"><i class="p" style="width:14.3%"></i></span></td>
+          <td class="num-pos">+1.1</td>
         </tr>
       
       </tbody>
@@ -1376,42 +1383,42 @@
       
         <tr>
           <td class="name">KI & Rechenzentren</td>
-          <td>21</td>
-          <td class="num-pos">+0.03</td>
-          <td style="text-align:left" class="meta">Kommunikation & Medien, Industrie & Transport, Technologie, Versorger</td>
+          <td>40</td>
+          <td class="num-pos">+0.02</td>
+          <td style="text-align:left" class="meta">Kommunikation & Medien, Zyklischer Konsum, Finanzen & Banken, Industrie & Transport, Technologie, Versorger</td>
         </tr>
       
         <tr>
           <td class="name">Chip-Lieferketten</td>
-          <td>14</td>
-          <td class="num-pos">+0.02</td>
-          <td style="text-align:left" class="meta">Kommunikation & Medien, Finanzen & Banken, Gesundheit & Pharma, Industrie & Transport, Technologie, Versorger</td>
+          <td>19</td>
+          <td class="num-pos">+0.01</td>
+          <td style="text-align:left" class="meta">Kommunikation & Medien, Finanzen & Banken, Gesundheit & Pharma, Industrie & Transport, Immobilien, Technologie, Versorger</td>
         </tr>
       
         <tr>
           <td class="name">Geldpolitik</td>
-          <td>4</td>
-          <td class="num-pos">+0.06</td>
-          <td style="text-align:left" class="meta">Finanzen & Banken, Immobilien, Technologie, Versorger</td>
+          <td>14</td>
+          <td class="num-pos">+0.09</td>
+          <td style="text-align:left" class="meta">Energie & Öl, Finanzen & Banken, Industrie & Transport, Rohstoffe & Chemie, Immobilien, Technologie, Versorger</td>
         </tr>
       
         <tr>
-          <td class="name">Zoll & Handelskonflikt</td>
-          <td>2</td>
-          <td class="num-neg">-0.34</td>
-          <td style="text-align:left" class="meta">Zyklischer Konsum, Industrie & Transport, Rohstoffe & Chemie, Technologie</td>
+          <td class="name">Öl & OPEC</td>
+          <td>4</td>
+          <td class="num-pos">+0.03</td>
+          <td style="text-align:left" class="meta">Zyklischer Konsum, Energie & Öl, Rohstoffe & Chemie</td>
         </tr>
       
         <tr>
           <td class="name">Immobilien & Kredit</td>
-          <td>2</td>
-          <td class="num-pos">+0.13</td>
-          <td style="text-align:left" class="meta">Finanzen & Banken, Immobilien</td>
+          <td>4</td>
+          <td class="num-neg">-0.05</td>
+          <td style="text-align:left" class="meta">Finanzen & Banken, Industrie & Transport, Immobilien</td>
         </tr>
       
         <tr>
           <td class="name">Konsumschwäche</td>
-          <td>2</td>
+          <td>1</td>
           <td class="">+0.00</td>
           <td style="text-align:left" class="meta">Zyklischer Konsum, Finanzen & Banken, Basiskonsum</td>
         </tr>
@@ -1429,110 +1436,110 @@
     <ul class="sources" style="margin:0; padding-left:18px">
     
       <li style="margin-bottom:8px">
+        <a href="https://www.fxstreet.com/news/australian-dollar-carry-and-growth-support-potential-rebound-hsbc-202607201437" target="_blank" rel="noopener">Australian Dollar: Carry and growth support potential rebound – HSBC</a><br>
+        <span class="meta">
+          FXStreet · 20.07.2026 ·
+          Wirkung +1.01
+          · Finanzen & Banken
+        </span>
+      </li>
+    
+      <li style="margin-bottom:8px">
+        <a href="https://www.fxstreet.com/news/british-pound-sterling-shifts-into-broader-range-against-us-dollar-uob-202607201349" target="_blank" rel="noopener">British Pound: Sterling shifts into broader range against US Dollar – UOB</a><br>
+        <span class="meta">
+          FXStreet · 20.07.2026 ·
+          Wirkung +0.71
+          · Finanzen & Banken
+        </span>
+      </li>
+    
+      <li style="margin-bottom:8px">
+        <a href="https://news.google.com/rss/articles/CBMiwwFBVV95cUxPQmcyZEZVbjRiUDJRc0dlMDFwR2hhUGlERFRPZVpNREktaVBVay11SFJ2WG1tM3VTUFlXMW8xWG8yMnpmMjZQTUFOdUk3UThNYjYxN2o0MGVVYjFac2lWdlpOZV84T0dGanU2anNSWEI0MjNyNmJFNVF6SWhQd3g0VGU2c1NoeEd4YmRfRzhXZ0RzMDIyMks4bmFzZHRMRHlOclkydFVhdU5YRF9HSkZ0TTQ5c09jbUJrNG5oMWJ2XzB6UE0?oc=5" target="_blank" rel="noopener">Stock market today: Dow, S&P 500, Nasdaq drop as chip stocks tumble, Alphabet stock sinks - Yahoo Finance</a><br>
+        <span class="meta">
+          Google News Finanzen · 16.07.2026 ·
+          Wirkung -0.67
+          · Technologie, Kommunikation & Medien
+        </span>
+      </li>
+    
+      <li style="margin-bottom:8px">
         <a href="https://www.cnbc.com/2026/07/17/softbank-chip-stocks-asia-wall-street-ai-rout.html" target="_blank" rel="noopener">SoftBank sinks over 9% as Asia chip stocks track Wall Street AI sell-off</a><br>
         <span class="meta">
           CNBC Technology · 17.07.2026 ·
-          Wirkung -0.82
+          Wirkung -0.55
           · Technologie
         </span>
       </li>
     
       <li style="margin-bottom:8px">
-        <a href="https://www.investing.com/news/economy-news/us-regional-banks-brush-off-war-jitters-with-lending-surge-fee-boost-4798698" target="_blank" rel="noopener">US regional banks brush off war jitters with lending surge, fee boost</a><br>
+        <a href="https://www.marketwatch.com/story/irens-stock-surges-as-the-neocloud-lands-2-8-billion-worth-of-new-deals-831302c3?mod=mw_rss_topstories" target="_blank" rel="noopener">Iren’s stock surges as the neocloud lands $2.8 billion worth of new deals</a><br>
         <span class="meta">
-          Investing.com Wirtschaft · 17.07.2026 ·
-          Wirkung +0.77
+          MarketWatch · 20.07.2026 ·
+          Wirkung +0.54
+          · Technologie
+        </span>
+      </li>
+    
+      <li style="margin-bottom:8px">
+        <a href="https://www.fxstreet.com/news/canadian-dollar-inflation-cools-as-boc-stays-patient-rbc-202607201403" target="_blank" rel="noopener">Canadian Dollar: Inflation cools as BoC stays patient – RBC</a><br>
+        <span class="meta">
+          FXStreet · 20.07.2026 ·
+          Wirkung +0.53
           · Finanzen & Banken
         </span>
       </li>
     
       <li style="margin-bottom:8px">
-        <a href="https://finance.yahoo.com/energy/articles/totalenergies-sees-stronger-q2-profit-103000234.html" target="_blank" rel="noopener">TotalEnergies Sees Stronger Q2 Profit as Refining and Oil Trading Surge</a><br>
+        <a href="https://www.fxstreet.com/news/silver-climbs-near-57-despite-renewed-fed-rate-hike-expectations-202607201247" target="_blank" rel="noopener">Silver climbs near $57 despite renewed Fed rate hike expectations</a><br>
         <span class="meta">
-          Yahoo Finance · 16.07.2026 ·
-          Wirkung +0.76
-          · Energie & Öl
+          FXStreet · 20.07.2026 ·
+          Wirkung +0.53
+          
         </span>
       </li>
     
       <li style="margin-bottom:8px">
-        <a href="https://www.cnbc.com/2026/07/16/alibaba-baidu-shares-jump-apple-ai-partnership-.html" target="_blank" rel="noopener">Alibaba and Baidu shares jump in Hong Kong on Apple AI partnership</a><br>
+        <a href="https://finance.yahoo.com/technology/ai/articles/nebius-775-million-debt-deal-161015706.html" target="_blank" rel="noopener">Nebius’ $775 Million Debt Deal Changes Everything About Its AI Growth Story</a><br>
         <span class="meta">
-          CNBC Technology · 16.07.2026 ·
-          Wirkung +0.69
+          Yahoo Finance · 20.07.2026 ·
+          Wirkung +0.50
           · Technologie
         </span>
       </li>
     
       <li style="margin-bottom:8px">
-        <a href="https://www.marketwatch.com/story/i-have-racked-up-35-000-in-credit-card-debt-should-i-file-for-bankruptcy-4c92d9e5?mod=mw_rss_topstories" target="_blank" rel="noopener">I racked up $35,000 in credit-card debt. Should I file for bankruptcy?</a><br>
+        <a href="https://finance.yahoo.com/technology/ai/articles/braiden-shaw-says-ai-generations-153500674.html" target="_blank" rel="noopener">Braiden Shaw says AI is this generation's 'one window' to build wealth — but warns time to capitalize is running out</a><br>
         <span class="meta">
-          MarketWatch · 17.07.2026 ·
-          Wirkung -0.63
-          · Finanzen & Banken
-        </span>
-      </li>
-    
-      <li style="margin-bottom:8px">
-        <a href="https://www.investing.com/news/economy-news/euro-zone-bond-yields-rise-as-oil-prices-jump-on-middle-east-tensions-93CH-4798794" target="_blank" rel="noopener">Euro zone bond yields rise as oil prices jump on Middle East tensions</a><br>
-        <span class="meta">
-          Investing.com Wirtschaft · 17.07.2026 ·
-          Wirkung +0.62
-          · Energie & Öl
-        </span>
-      </li>
-    
-      <li style="margin-bottom:8px">
-        <a href="https://www.cnbc.com/2026/07/16/tsmc-second-quarter-profit-.html" target="_blank" rel="noopener">TSMC to invest additional $100 billion in Arizona after second-quarter profit soars 77%</a><br>
-        <span class="meta">
-          CNBC Technology · 16.07.2026 ·
-          Wirkung +0.60
+          Yahoo Finance · 20.07.2026 ·
+          Wirkung -0.50
           · Technologie
         </span>
       </li>
     
       <li style="margin-bottom:8px">
-        <a href="https://www.investing.com/news/stock-market-news/tesla-drops-3-with-bearish-engulfing-at-393-support-live-levels-93CH-4788802" target="_blank" rel="noopener">Tesla trapped in bearish chop near $381: Hourly levels</a><br>
+        <a href="https://www.ft.com/content/1197682a-c72d-4ae2-a8f2-f0fd3f867439?syn-25a6b1a6=1" target="_blank" rel="noopener">Regulator fired by Trump warns Fed independence still at risk</a><br>
         <span class="meta">
-          Investing.com · 17.07.2026 ·
-          Wirkung -0.60
-          · Zyklischer Konsum
+          Financial Times · 20.07.2026 ·
+          Wirkung -0.48
+          
         </span>
       </li>
     
       <li style="margin-bottom:8px">
-        <a href="https://finance.yahoo.com/markets/stocks/articles/2-reasons-feel-bullish-googl-113002127.html" target="_blank" rel="noopener">2 Reasons to Feel Bullish on GOOGL Stock Ahead of Alphabet’s Q2 Earnings</a><br>
+        <a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxOLVp4LWZyMUlpNGV3T2MwYmkwT1RLY01BSzNnTkpRaUJRZ2dXWGpOVEJDdEJqN0xLTUdMT0hvYzczREpVZmZWUzlpVkZoWGMzcVpTZHgtd0ltdDJINFBnWXBEaTRHa1pvYjB3ZHQ5dWNyRHlLZUJJWHVZd0Q5aU5CcnVydGpNcmlzQlFtbGZ4aVZVWTRERGFqenN5OWdleEpYeHIxYmhVX3o4V0xhdWZ6SFdLc2MxUQ?oc=5" target="_blank" rel="noopener">Stock market today: Dow, S&P 500, Nasdaq rise as Apple notches record high - Yahoo Finance</a><br>
         <span class="meta">
-          Yahoo Finance · 16.07.2026 ·
-          Wirkung +0.49
-          · Kommunikation & Medien
-        </span>
-      </li>
-    
-      <li style="margin-bottom:8px">
-        <a href="https://www.marketwatch.com/story/chip-stocks-enter-bear-market-territory-a-bofa-analyst-says-not-to-panic-4d34df17?mod=mw_rss_topstories" target="_blank" rel="noopener">Chip stocks enter bear-market territory. A BofA analyst says not to panic.</a><br>
-        <span class="meta">
-          MarketWatch · 17.07.2026 ·
-          Wirkung -0.46
+          Google News Finanzen · 15.07.2026 ·
+          Wirkung +0.47
           · Technologie
         </span>
       </li>
     
       <li style="margin-bottom:8px">
-        <a href="https://www.cnbc.com/2026/07/17/x-china-ai-summit-risks-security.html" target="_blank" rel="noopener">Xi pitches China as AI partner to developing world, warns against risks and security overreach</a><br>
+        <a href="https://www.cnbc.com/2026/07/17/amazon-zoox-recalls-robotaxi-smoke.html" target="_blank" rel="noopener">Amazon's Zoox issues software recall after robotaxi drove into heavy smoke</a><br>
         <span class="meta">
           CNBC Technology · 17.07.2026 ·
-          Wirkung -0.46
-          · Technologie
-        </span>
-      </li>
-    
-      <li style="margin-bottom:8px">
-        <a href="https://www.cnbc.com/2026/07/17/we-remain-bullish-on-this-chip-stock-despite-a-30percent-pullback-this-month.html" target="_blank" rel="noopener">Why we remain bullish on this chip stock despite a 30% pullback this month</a><br>
-        <span class="meta">
-          CNBC Technology · 17.07.2026 ·
-          Wirkung +0.45
-          · Technologie
+          Wirkung -0.39
+          · Technologie, Zyklischer Konsum
         </span>
       </li>
     
@@ -1547,7 +1554,7 @@
   Dollar); Monatsdaten werden mit ihrer realen Veröffentlichungsverzögerung
   eingerechnet, damit die Rückrechnung nichts weiß, was damals niemand wissen konnte.
   Historische Analogien vergleichen den heutigen Regime-Vektor mit
-  5088 Handelstagen Historie und messen die Rendite
+  5091 Handelstagen Historie und messen die Rendite
   <i>nach</i> den ähnlichsten Tagen — immer gegen die Basisrate gerechnet, weil eine
   Trefferquote ohne Vergleichsmaßstab nichts aussagt.</p>
   <p><b>Grenzen.</b> Die Nachrichten-Zuordnung ist stichwortbasiert und damit
@@ -1555,8 +1562,8 @@
   zuverlässiger. Und selbst ein Muster mit klarem Vorsprung bleibt eine Aussage über
   die Vergangenheit.</p>
   <p>Dieser Tracker ist ein Research-Werkzeug, keine Anlageberatung. Alle 'Hot Takes' sind quantitativ hergeleitete Hypothesen mit offenem Ausgang -- keine Empfehlungen. Historische Muster wiederholen sich nicht zuverlässig.</p>
-  <p class="meta">Lauf dauerte 71431 s.
-  Keine Daten für: APD, BKNG, INTC, MU, O, ORCL, ^BSESN, ^N225.</p>
+  <p class="meta">Lauf dauerte 181 s.
+  </p>
 </footer>
 
 </div>
